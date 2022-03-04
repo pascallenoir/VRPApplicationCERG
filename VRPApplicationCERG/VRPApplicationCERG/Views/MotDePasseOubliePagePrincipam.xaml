@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:control="clr-namespace:VRPApplicationCERG.Controls" 
+             xmlns:behaviour="clr-namespace:VRPApplicationCERG.Helpers.Behaviours" 
+             xmlns:converter="clr-namespace:VRPApplicationCERG.Helpers.Converters"
+             BackgroundColor="{StaticResource FondLogin}"
+             Shell.ForegroundColor="{StaticResource couleurnoir}"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.BackgroundColor="{StaticResource FondLogin}"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
+             Shell.NavBarHasShadow="False"
+             x:Class="VRPApplicationCERG.Views.MotDePasseOubliePagePrincipam">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--titre personnalisé de la page-->
+    <Shell.TitleView>
+
+        <StackLayout Orientation="Horizontal"
+              Margin="0,0,10,0"
+              Padding="{OnPlatform iOS='0,0,5,0', Android='0,0,10,0', Default=0}"
+              HorizontalOptions="FillAndExpand">
+
+            <ImageButton
+              Visual="Material"
+              BackgroundColor="Transparent"
+              HorizontalOptions="EndAndExpand"
+              VerticalOptions="CenterAndExpand"
+              Command="{Binding ActiverSearchControl}">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}"
+                     Color="{StaticResource couleurnoir}"
+                     Size="24"
+                     Glyph="&#xf059;"/>
+                </ImageButton.Source>
+            </ImageButton>
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                   Spacing="25"
+                   Padding="20,20,20,20"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="StartAndExpand">
+
+                <!-- Entete de page -->
+                <StackLayout VerticalOptions="StartAndExpand"
+                       Spacing="10"
+                       HorizontalOptions="FillAndExpand">
+
+                    <!-- Texte descriptif -->
+                    <Label Text="Réinitialiser le mot de passe"
+                       MaxLines="1"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Start"
+                       FontSize="25"
+                       LineBreakMode="WordWrap"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource couleurchampsdesaisieBleu}"/>
+
+                    <Label LineBreakMode="WordWrap"
+                           FontSize="12.2"
+                           TextColor="{StaticResource couleurnoir}"
+                           HorizontalOptions="StartAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Entrer l'adresse email associé a votre compte et nous vous &#10;"/>
+                            <Span Text="enverrons un email avec les instructions necessaires à la &#10;"/>
+                            <Span Text="reinitialisation de votre mot de passe. &#10;"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+
+            </StackLayout>
+
+             <!--CHamps nom utilisateur-->
+            <StackLayout Orientation="Vertical"
+                  Spacing="5"
+                  HorizontalOptions="FillAndExpand">
+
+                <Label Text="Adresse email"
+                     Margin="5,0,0,0"
+                     Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                       Style="{StaticResource PancakeChampsaisiepersonnaliséLogin}">
+
+                    <control:EntryRenderers Keyboard="Text"
+                             Placeholder="Entrer l'email associé..."
+                             Text="{Binding E_MAIL_USER_VRP.Value}"
+                             Style="{StaticResource ChampsSaisieLogin}">
+                        <control:EntryRenderers.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding E_MAIL_USER_VRP.IsValid}"/>
+                        </control:EntryRenderers.Behaviors>
+                    </control:EntryRenderers>
+
+                </yummy:PancakeView>
+
+                <Label Text="{Binding E_MAIL_USER_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding E_MAIL_USER_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource ErrorTextStyle}"/>
+
+                <!-- bouton de connexion -->
+                <Button VerticalOptions="End" 
+                    Text="Envoyer les instructions"
+                    CornerRadius="12"
+                    HorizontalOptions="FillAndExpand"
+                    Visual="Material"
+                    HeightRequest="50"
+                    BackgroundColor="{StaticResource VioletbuttonSoft}"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource Primary}"
+                    Clicked="Button_Clicked"
+                    Command="{Binding LoginCommand}"/>
+
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

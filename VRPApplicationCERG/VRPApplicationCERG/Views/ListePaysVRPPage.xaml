@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             x:Class="VRPApplicationCERG.Views.ListePaysVRPPage"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarHasShadow="True"
+             Shell.NavBarIsVisible="True"
+             Title="{Binding Title}"
+             xmlns:behaviors="clr-namespace:VRPApplicationCERG.Behaviors"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters"
+             xmlns:converters="clr-namespace:VRPApplicationCERG.Converters" 
+             xmlns:Controls="clr-namespace:VRPApplicationCERG.Controls" 
+             xmlns:local1="clr-namespace:VRPApplicationCERG.ViewModels.PAYS_NATIONAL_VIEWMODEL" 
+             xmlns:custom="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+
+    <!--titre personnalisé de la page-->
+    <Shell.TitleView>
+
+        <StackLayout Orientation="Horizontal"
+              Margin="0,0,10,0"
+              Padding="{OnPlatform iOS='0,0,5,0', Android='0,0,10,0', Default=0}"
+              HorizontalOptions="FillAndExpand">
+
+            <Label Text="Paramètres"
+                   Style="{StaticResource TitreListeApplicationNav}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="CenterAndExpand"
+                   LineBreakMode="TailTruncation"/>
+
+
+            <Button 
+              Text="Ajouter"
+              TextColor="{StaticResource Primary}"
+              FontSize="12"
+              FontAttributes="Bold"
+              HeightRequest="35"
+              Visual="Material"
+              Padding="10,0,10,0"
+              CornerRadius="20"
+              HorizontalOptions="EndAndExpand"
+              VerticalOptions="CenterAndExpand"
+              BackgroundColor="{StaticResource violetclaire}"
+              Command="{Binding AddItemCommand}"/>
+
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converters:ConvertisseurImage x:Key="byteToImageSource" />
+
+            <!--  UTILE POUR LA LISTE -->
+            <DataTemplate x:Key="CollectionVRP">
+
+                    <Controls:MaterialFrame
+                           Style="{StaticResource FrameListApplicationConteneurPetit}"
+                           Elevation="0"
+                           HorizontalOptions="FillAndExpand">
+
+                        <Grid Padding="2,2,2,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+                        <custom:CircleImage
+                                Aspect="AspectFit"
+                                Margin="0,10,10,10"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource ImageListeApplication}"
+                                Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8world60bounce.png}"/>
+
+
+                        <StackLayout Grid.Row="0"
+                                Grid.Column="1"
+                                Spacing="0"
+                                Padding="0,0,0,2"
+                                BackgroundColor="White"
+                                Orientation="Vertical"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand">
+
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Spacing="5"
+                                         Grid.Row="0"
+                                         VerticalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                        <Label Text="{Binding PAYS_NOM}"
+                                             Grid.Row="0"
+                                              Grid.Column="0"
+                                             Style="{StaticResource TitrelisteApplicationItem}">
+                                        </Label>
+
+                                    </StackLayout>
+
+                                    <ImageButton
+                                       Grid.Row="0"
+                                       IsVisible="{Binding Path=BindingContext.BoutonConfirmSuppression,Source={x:Reference Name=Annuler}}"
+                                       BackgroundColor="Transparent"
+                                       Grid.Column="1"
+                                       Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8effacer24violet.png}"
+                                       VerticalOptions="End"
+                                       HeightRequest="24"
+                                       WidthRequest="24"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="End"
+                                       Command="{Binding Path=BindingContext.ConfirmSuppresItemCommand, Source={x:Reference Name=ListeVRP}}"
+                                       CommandParameter="{Binding .}"/>
+                                </Grid>
+                            </StackLayout>
+
+                        </Grid>
+                    </Controls:MaterialFrame>
+
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <StackLayout Grid.Row="0"
+                 Orientation="Vertical"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Spacing="0">
+
+            <StackLayout Orientation="Vertical"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Start">
+
+                <!--Titre de page-->
+                <Label Margin="10,10,0,5"
+					LineBreakMode="TailTruncation"
+                    Text="{Binding Title}"
+                    Style="{StaticResource GrosTitreListeApplication}"
+                    VerticalOptions="Start"
+					HorizontalOptions="StartAndExpand"/>
+
+                <!--barre de recherche-->
+                <Controls:MaterialFrame Margin="10,0,15,10" 
+                        Style="{StaticResource FrameChampsaisiepersonnaliséSearch}">
+
+                    <Controls:SearchBarRendererControl x:Name="searchBar"
+                           Placeholder="Rechercher un pays"
+                           Text="{Binding SearchText}"
+                           Style="{StaticResource ChampsDeRecherche}">
+                        <Controls:SearchBarRendererControl.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged" 
+                                                     Command="{Binding SearchCommand}"/>
+                        </Controls:SearchBarRendererControl.Behaviors>
+                    </Controls:SearchBarRendererControl>
+
+                </Controls:MaterialFrame>
+
+            </StackLayout>
+
+            <!--bouton d'action agissant sur la liste-->
+            <ScrollView 
+                Orientation="Horizontal"
+                Padding="0,5"
+                IsVisible="false"
+                Margin="10,10,10,0"
+                HorizontalScrollBarVisibility="Never"
+                HorizontalOptions="FillAndExpand">
+
+                <StackLayout Spacing="5"
+                         Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="CenterAndExpand">
+                    <Button
+                               Text="Supprimer plusieurs"
+                               ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8cocheztoutesles48violet.png}"
+                               IsVisible="{Binding BoutonActionSuppression}"
+                               TextColor="{StaticResource couleurnoir}"
+                               FontSize="12"
+                              HeightRequest="40"
+                               Padding="10,5,10,5"
+                               Margin="0,0,0,0"
+                               CornerRadius="22"
+                               HorizontalOptions="Start"
+                               ContentLayout="Left, 20"
+                               BackgroundColor="{StaticResource violetclaireButton}"
+                               Command="{Binding CocheItemCommand}"/>
+
+
+                    <Button
+                               Text="Supprimer la liste"
+                                ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8supprimerlacorbeille48violet.png}"
+                                IsVisible="{Binding BoutonActionSuppression}"
+                                TextColor="{StaticResource couleurnoir}"
+                                FontSize="12"
+                                HeightRequest="40"
+                                Padding="10,5,10,5"
+                                Margin="5,0,0,0"
+                                CornerRadius="22"
+                                HorizontalOptions="Start"
+                                ContentLayout="Left, 20"
+                                BackgroundColor="{StaticResource violetclaireButton}"
+                                Command="{Binding DeleteAllItemsCommand}" />
+
+                    <Button x:Name="Annuler"
+                           IsVisible="{Binding BoutonConfirmSuppression}"
+                           Text="Annuler"
+                           TextColor="{StaticResource couleurnoir}"
+                           FontSize="12"
+                           HeightRequest="40"
+                           Padding="10,5,10,5"
+                           Margin="5,0,0,0"
+                           CornerRadius="22"
+                           HorizontalOptions="Start"
+                           BackgroundColor="{StaticResource violetclaireButton}"
+                           Command="{Binding AnnulerSuppresItemCommand}"/>
+
+
+
+                </StackLayout>
+            </ScrollView>
+            
+            <!--liste d'element-->
+            <StackLayout 
+                 Orientation="Vertical"
+                 Margin="0,5,0,0"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand">
+
+                <RefreshView x:DataType="local1:PaysNationalViewModelListe" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                    <CollectionView x:Name="ListeVRP"
+                            ItemsSource="{Binding PaysList}"
+                            Style="{StaticResource CollectionviewListeStyle}"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                            ItemTemplate="{StaticResource CollectionVRP}">
+
+                        <CollectionView.EmptyView>
+
+                            <StackLayout Orientation="Vertical"
+                                     Padding="15,0,15,0"
+                                     BackgroundColor="{StaticResource Primary}"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand"
+                                     Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="CenterAndExpand"
+                                     Spacing="10">
+
+                                    <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.Emptyamico.png}"
+                                        HeightRequest="200"
+                                        WidthRequest="200"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Aspect="AspectFit"/>
+
+                                    <Label Text="Cette Liste est vide."
+                                        Style="{StaticResource TitreCrouselApplication}"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center" />
+
+                                    <Label Text="Aucun élément n'a été trouvé dans cette liste. Il sagit peut etre d'une erreur réseaux. Vérifiez l'état de votre connexion internet."
+                                        HorizontalOptions="CenterAndExpand"
+                                        Style="{StaticResource DescriptionlabelsansboldCarousel}"/>
+
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </CollectionView.EmptyView>
+
+                    </CollectionView>
+                </RefreshView>
+
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+    <!--fin de ligne-->
+</ContentPage>

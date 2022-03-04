@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters" 
+             xmlns:control="clr-namespace:VRPApplicationCERG.Controls"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:local="clr-namespace:VRPApplicationCERG.Views" 
+             xmlns:converter="clr-namespace:VRPApplicationCERG.Helpers.Converters" 
+             xmlns:behaviour="clr-namespace:VRPApplicationCERG.Helpers.Behaviours" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             ios:Page.UseSafeArea="true"
+             Shell.NavBarIsVisible="True"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarHasShadow="True"
+             Title="{Binding Title}"
+             x:Class="VRPApplicationCERG.Views.DetailEtsBancairePage">
+
+    <!--titre personnalisé de la page-->
+    <Shell.TitleView>
+
+        <StackLayout Orientation="Horizontal"
+              Margin="0,0,10,0"
+              Padding="{OnPlatform iOS='0,0,5,0', Android='0,0,10,0', Default=0}"
+              HorizontalOptions="FillAndExpand">
+
+            <Label Text="Details banque"
+                   Style="{StaticResource TitreListeApplicationNav}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="CenterAndExpand"
+                   LineBreakMode="TailTruncation"/>
+
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+       <StackLayout HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+            <ScrollView 
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+
+                <StackLayout Spacing="20"
+                    Orientation="Vertical"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="15"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--Entete de page pour titre-->
+
+                    <StackLayout Orientation="Vertical"
+                       HorizontalOptions="FillAndExpand"
+                       Spacing="0">
+
+                        <Label Text="{Binding BANQUE_NOM}"
+                           Style="{StaticResource TitreApplicationDetail}"
+                           VerticalOptions="Center" />
+
+                        <Label LineBreakMode="HeadTruncation">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding BANQUE_CODE_BCEAO}"
+                                       TextTransform="Uppercase"
+                                       Style="{StaticResource TitreListeApplicationGrayDetail}"/>
+
+                                    <Span Text="-"
+                                       TextTransform="Uppercase"
+                                       Style="{StaticResource TitreListeApplicationDetail}"/>
+
+                                    <Span Text="{Binding BANQUE_SIGLE}"
+                                       TextTransform="Uppercase"
+                                       Style="{StaticResource TitreListeApplicationDetail}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
+
+                    <!--Corps de la page pour informations et formulaire-->
+                    <StackLayout>
+
+
+                        <!--PAYS CODE-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Code pays de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding PAYS_CODE}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+                                    <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                         IsVisible="false"
+                                        x:Name="payscode"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                        <control:EntryRenderers x:Name="payscodeChamps"
+                                            Keyboard="Text"
+                                            MaxLength="4"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Nouveau code pays"
+                                            Text="{Binding PAYS_CODE.Value}"
+                                            Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding PAYS_CODE.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding PAYS_CODE.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                        IsVisible="{Binding PAYS_CODE.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                        Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                    AlignItems="Center"
+                                    HorizontalOptions="End"
+                                    JustifyContent="SpaceEvenly"
+                                    Padding="5">
+
+                                    <ImageButton x:Name="payscodeImagebutton"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Aspect="AspectFit"
+                                        HeightRequest="20"
+                                        WidthRequest="20"
+                                        Clicked="ClickSurImageButtonPayscode"
+                                        VerticalOptions="CenterAndExpand"
+                                        BackgroundColor="Transparent"
+                                        Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--BANQUE CODE-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Code BCEAO de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding BANQUE_CODE_BCEAO}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                         IsVisible="false"
+                                        x:Name="banquecode"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanquecodeChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Nouveau code Banque"
+                                            Text="{Binding BANQUE_CODE_BCEAO.Value}"
+                                            Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_CODE_BCEAO.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding BANQUE_CODE_BCEAO.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                        IsVisible="{Binding BANQUE_CODE_BCEAO.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                        Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="banquecodeImagebutton"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Clicked="ClickSurImageButtonBanquecode"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--BANQUE NOM-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Nom de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding BANQUE_NOM}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        IsVisible="false"
+                                        x:Name="banquenom"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanquenomChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Nouveau nom banque"
+                                            Text="{Binding BANQUE_NOM.Value}"
+                                            Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_NOM.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding BANQUE_NOM.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_NOM.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                             Aspect="AspectFit"
+                                             x:Name="banquenomImagebutton"
+                                             HeightRequest="20"
+                                             WidthRequest="20"
+                                             Clicked="ClickSurImageButtonBanquenom"    
+                                             VerticalOptions="CenterAndExpand"
+                                             BackgroundColor="Transparent"
+                                             Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--BANQUE SIGLE-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Sigle de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding BANQUE_SIGLE}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                                            x:Name="banquesigle"
+                                        IsVisible="false"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanquesigleChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Nouveau sigle banque"
+                                            Text="{Binding BANQUE_SIGLE.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_SIGLE.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding BANQUE_SIGLE.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_SIGLE.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="banquesigleImagebutton"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Clicked="ClickSurImageButtonBanquensigle"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--BANQUE DATE SUSP-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Date susp de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding BANQUE_DATE_SUSP}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                                           IsVisible="false"
+                                        x:Name="banquedatesusp"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanquedatesuspChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Nouvelle date  susp"
+                                             Text="{Binding BANQUE_DATE_SUSP.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_DATE_SUSP.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding BANQUE_DATE_SUSP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_DATE_SUSP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="banquedatesuspImagebutton"
+                                         Clicked="ClickSurImageButtonBanquendatesusp"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--BANQUE CLE BCEAO-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Clé BCEAO de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding BANQUE_CLE_BCEAO}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                                           IsVisible="false"
+                                        x:Name="banqueclebceao"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanqueclebceaoChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Saisir la clé BCEAO"
+                                            Text="{Binding BANQUE_CODE_REMET.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_CODE_REMET.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding BANQUE_CODE_REMET.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_CODE_REMET.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="banqueclebceaoImagebutton"        
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Clicked="ClickSurImageButtonBanqueclebceao"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--BANQUE CODE REMET-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Code Remet de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding BANQUE_CODE_REMET}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                                           IsVisible="false"
+                                        x:Name="Banquecoderemet"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanquecoderemtChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Saisir le code remet"
+                                            Text="{Binding BANQUE_CODE_REMET.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_CODE_REMET.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding BANQUE_CODE_REMET.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_CODE_REMET.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="BanquecoderemetImagebutton"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Clicked="ClickSurImageButtonBanquecoderemet"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--CODE_FORMULE-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Code de formule de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding CODE_FORMULE}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                                           IsVisible="false"
+                                        x:Name="codeformule"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="codeformuleChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Saisir le code de formule"
+                                            Text="{Binding CODE_FORMULE.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding CODE_FORMULE.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding CODE_FORMULE.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding CODE_FORMULE.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="codeformuleImageButton"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Clicked="ClickSurImageButtonBanquecodeformule"
+                                         VerticalOptions="CenterAndExpand"
+                                          BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--BANQUE_SDEVMT-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="SDEVMT de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding BANQUE_SDEVMT}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+                                    <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                                           IsVisible="false"
+                                        x:Name="Banquesdevmt"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanquesdevmtChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Saisir le SDEVMT"
+                                             Text="{Binding BANQUE_SDEVMT.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_SDEVMT.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding BANQUE_SDEVMT.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_SDEVMT.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="BanquesdevmtImagebutton"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Clicked="ClickSurImageButtonBanquesdevmt"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--BANQUE_B_F-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="BF de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding BANQUE_B_F}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                                           IsVisible="false"
+                                        x:Name="Banquebf"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanquebfChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Saisir le BF de la banque"
+                                             Text="{Binding BANQUE_B_F}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_B_F.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding BANQUE_B_F.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_B_F.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="BanquebfImageButton"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Clicked="ClickSurImageButtonBanquebf"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <!--ETCIV_MATRICULE-->
+                        <Frame
+                           Style="{StaticResource FrameListApplicationConteneurBorder}"
+                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Etat civil/Matricule de la banque"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <Label Text="{Binding ETCIV_MATRICULE}"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisieDetail}" />
+
+
+                                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                                           IsVisible="false"
+                                        x:Name="Banqueetciv"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                            <control:EntryRenderers x:Name="BanqueetcivChamps"
+                                            Keyboard="Text"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Placeholder="Saisir le ETCIV MATRICULE"
+                                             Text="{Binding ETCIV_MATRICULE}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <control:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding ETCIV_MATRICULE.IsValid}"/>
+                                            </control:EntryRenderers.Behaviors>
+                                        </control:EntryRenderers>
+
+                                        </yummy:PancakeView>
+
+                                        <Label Text="{Binding ETCIV_MATRICULE.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding ETCIV_MATRICULE.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <FlexLayout Direction="Column"
+                                      AlignItems="Center"
+                                      HorizontalOptions="End"
+                                      JustifyContent="SpaceEvenly"
+                                      Padding="5">
+
+                                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                         Aspect="AspectFit"
+                                         x:Name="BanqueetcivImageButton"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Clicked="ClickSurImageButtonBanqueetciv"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8expandarrow48.png}"/>
+
+                                </FlexLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                    </StackLayout>
+                    
+                    <!--Pieds de page-->
+                    <StackLayout Orientation="Horizontal"
+                     BackgroundColor="{StaticResource Primary}"
+                     Padding="5"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="End">
+
+                        <!--element 1-->
+                        <Label Text="Etablissement bancaire"
+                            LineBreakMode="TailTruncation"
+                            Style="{StaticResource TitreApplication}"
+                            HorizontalOptions="StartAndExpand" 
+                            VerticalOptions="CenterAndExpand"/>
+
+
+                        <!--element 2-->
+                        <Button Text="Enregistrer"
+                       VerticalOptions="CenterAndExpand"
+                       Style="{StaticResource BoutonApplicationBoldSombre}"
+                       HorizontalOptions="EndAndExpand"
+                       Command="{Binding SaveCommand}"/>
+
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

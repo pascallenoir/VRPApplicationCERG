@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     x:Class="VRPApplicationCERG.Views.AboutPage"
+     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+     xmlns:controls="clr-namespace:VRPApplicationCERG.Controls"
+     ios:Page.UseSafeArea="true"
+     Shell.NavBarIsVisible="True"
+     Shell.TabBarIsVisible="False"
+     Shell.NavBarHasShadow="True"
+     xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters"
+     Title="{Binding Title}">
+    
+    <!--barre de navigation personnalisée -->
+    <Shell.TitleView>
+
+        <StackLayout Orientation="Horizontal"
+           Padding="{OnPlatform iOS='0,0,5,0', Android='0,0,10,0', Default=0}"
+           HorizontalOptions="FillAndExpand">
+
+
+            <Label Text="{Binding Title}"
+               HorizontalOptions="Start"
+               VerticalOptions="CenterAndExpand"
+               Style="{StaticResource TitreListeApplicationNav}"
+               LineBreakMode="TailTruncation"/>
+
+        </StackLayout>
+    </Shell.TitleView>
+    <!--2. fin de ligne -->
+    
+
+    <ScrollView Padding="0,20,0,20">
+        <StackLayout 
+           Spacing="0"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+            
+                    
+                        <StackLayout Orientation="Vertical"
+                                     Padding="20"
+                                     HorizontalOptions="FillAndExpand">
+
+                            <!--Titre de page-->
+                            <Label LineBreakMode="TailTruncation"
+                                           Text="A propos de nous"
+                                           Style="{StaticResource GrosTitreListeApplication}"
+                                           VerticalOptions="Start"
+			                        	   HorizontalOptions="CenterAndExpand"/>
+
+                            <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.Aboutuspagerafiki.png}"
+                                               Aspect="AspectFit"
+                                               HorizontalOptions="FillAndExpand"
+                                               HeightRequest="150"
+                                               WidthRequest="150"/>
+
+                            <Label Text="Vous trouverez ici toutes les informations concernant cette application ainsi que les informations portant sur ses concepteurs."
+                                 VerticalTextAlignment="Center"
+                                 MaxLines="3"
+                                 Style="{StaticResource Descriptionlabelsansbold}"/>
+
+                        </StackLayout>
+
+                        <!--page partie 1-->
+                        <StackLayout Orientation="Vertical"
+                                  BackgroundColor="{StaticResource couleurGrisTextBackground}"
+                                  Padding="20"
+                                  Spacing="20"
+                                  HorizontalOptions="FillAndExpand">
+
+                                <controls:MaterialFrame 
+                                  Padding="10,10"
+                                  CornerRadius="0"
+                                  Elevation="4"
+                                  BackgroundColor="White"
+                                  HasShadow="True">
+                                    
+                                    <StackLayout Orientation="Vertical"
+                                                 HorizontalOptions="FillAndExpand">
+
+                                         <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.Aboutuspagerafiki.png}"
+                                             Aspect="AspectFit"
+                                             HorizontalOptions="FillAndExpand"
+                                             HeightRequest="200"
+                                             WidthRequest="300"/>
+
+                                         <Label LineBreakMode="TailTruncation"
+                                               Text="Concernant CERGI VRP..."
+                                               Style="{StaticResource TitreApplicationDetail}"
+                                               VerticalOptions="Start"
+			                                   HorizontalOptions="StartAndExpand"/>
+
+                                         <controls:ExpandParagraphControl Text="L'application CERGI VRP a été pensé dans le but de permettre aux membres du personnels de la société CERGI SA, de bénéficier d'un outil qui leur permettrai, non seuelement d'etre au meme niveau d'information, mais encore, de pouvoir accéder aux différentes personnes ressources qui sont pour la société, un canal ou une interface entre la société et les établissements bancaire. Chaque employer ayant installer cette application, aura acces a la liste complete des VRP ou encore personnes ressources  de CERGI au sein des établissements bancaire. "
+                                                TextFontSize="Caption"
+                                                TextFontAttributes="None"
+                                                HorizontalOptions="FillAndExpand"
+                                                TextColor="{StaticResource couleurGrayNuancee1}"
+                                                DefaultVisibleLines="5"
+                                                DefaultButtonTitle="En savoir plus..."/>
+
+                                    </StackLayout>
+
+                                </controls:MaterialFrame>
+
+
+                                <controls:MaterialFrame 
+                                       Padding="10,10"
+                                       CornerRadius="0"
+                                       Elevation="4"
+                                       BackgroundColor="White"
+                                       HasShadow="True">
+
+                                    <StackLayout Orientation="Vertical"
+                                                 HorizontalOptions="FillAndExpand">
+
+                                        <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.cergiLogo.png}"
+                                              Aspect="AspectFit"
+                                              HorizontalOptions="FillAndExpand"
+                                              HeightRequest="200"
+                                              WidthRequest="348"/>
+
+                                        <Label LineBreakMode="TailTruncation"
+                                               Text="Qui est CERGI.SA ?"
+                                               Style="{StaticResource TitreApplicationDetail}"
+                                               VerticalOptions="Start"
+			                                   HorizontalOptions="StartAndExpand"/>
+
+                                        <controls:ExpandParagraphControl Text="Créée à Abidjan (Côte d'Ivoire) en 1991 à l'initiative de M. Yao Dodzi DOGBO, CERGI Afrique Sarl est née du rachat du fonds de commerce de la filiale africaine du Groupe français, Société Générale de services et de Gestion (SG2 – Afrique).Devenue en 2003 CERGI Banking Services SA, elle a poursuivi sa structuration en 2015 avec la création de CERGI SA à Lomé (Togo) en vue d'une configuration de Groupe.
+                                               Les solutions logicielles développées par CERGI sont aujourd'hui exploitées par des institutions financières réparties dans les espaces UEMOA (Union Économique et Monétaire des États de l'Afrique de l'Ouest) et CEMAC (Communauté Économique et Monétaire des États de l'Afrique Centrale)."
+                                               TextFontSize="Caption"
+                                               TextFontAttributes="None"
+                                               HorizontalOptions="FillAndExpand"
+                                               TextColor="{StaticResource couleurGrayNuancee1}"
+                                               DefaultVisibleLines="5"
+                                               DefaultButtonTitle="En savoir plus..."/>
+
+                                    </StackLayout>
+
+                                </controls:MaterialFrame>
+
+                        </StackLayout>
+
+                        <!--page partie 2-->
+            <StackLayout Orientation="Vertical"
+                              BackgroundColor="{StaticResource violetclaireoPACITYPUR}"
+                              Padding="20"
+                              Spacing="20"
+                              HorizontalOptions="FillAndExpand">
+
+                <controls:MaterialFrame 
+                               CornerRadius="0"
+                               Elevation="4"
+                               Padding="0"
+                               BackgroundColor="White"
+                               HasShadow="True">
+
+                    <StackLayout Orientation="Vertical"
+                                         HorizontalOptions="FillAndExpand">
+
+                        <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.aboutmission.jpg}"
+                                          Aspect="AspectFill"
+                                          HorizontalOptions="FillAndExpand"
+                                          HeightRequest="200"
+                                          WidthRequest="348"/>
+
+                        <Label LineBreakMode="TailTruncation"
+                                         Text="Notre Mission"
+                                         Padding="10,0,10,0"
+                                         Style="{StaticResource TitreApplicationDetail}"
+                                         VerticalOptions="Start"
+			                             HorizontalOptions="StartAndExpand"/>
+
+                        <controls:ExpandParagraphControl Text="Fournir aux banques et établissements financiers (Fonds de Garantie, Crédit-Bail et Leasing, Systèmes Financiers Décentralisés) un progiciel de gestion bancaire: &#10;
+                                           - intégré; &#10;
+                                           - complet; &#10;
+                                           - Fortement paramétrable; &#10;
+                                           - performant; &#10;
+                                           - conçu strictement selon les instructions des Autorités de Régulation..."
+                                           TextFontSize="Caption"
+                                           Padding="10,0,10,5"
+                                           TextFontAttributes="None"
+                                           HorizontalOptions="FillAndExpand"
+                                           TextColor="{StaticResource couleurGrayNuancee1}"
+                                           DefaultVisibleLines="5"
+                                           DefaultButtonTitle="En savoir plus..."/>
+
+                    </StackLayout>
+
+                </controls:MaterialFrame>
+
+
+                <controls:MaterialFrame 
+                                 Padding="0"
+                                 CornerRadius="0"
+                                 Elevation="4"
+                                 BackgroundColor="White"
+                                 HasShadow="True">
+
+                    <StackLayout Orientation="Vertical"
+                                           HorizontalOptions="FillAndExpand">
+
+                        <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.aboutplan.jpg}"
+                                          Aspect="AspectFill"
+                                          HorizontalOptions="FillAndExpand"
+                                          HeightRequest="200"
+                                          WidthRequest="348"/>
+
+                        <Label LineBreakMode="TailTruncation"
+                              Text="Notre Stratégie"
+                              Padding="10,0,10,0"
+                              Style="{StaticResource TitreApplicationDetail}"
+                              VerticalOptions="Start"
+			                  HorizontalOptions="StartAndExpand"/>
+
+                        <controls:ExpandParagraphControl Text="Couvrir la totalité des fonctionnalités métiers et supports des banques et établissements financiers dans le strict respect des instructions des Autorités de Régulation(Autres banques centrales)et des législations internationales."
+                               TextFontSize="Caption"
+                               TextFontAttributes="None"
+                               Padding="10,0,10,5"
+                               HorizontalOptions="FillAndExpand"
+                               TextColor="{StaticResource couleurGrayNuancee1}"
+                               DefaultVisibleLines="5"
+                               DefaultButtonTitle="En savoir plus..."/>
+
+                    </StackLayout>
+
+                </controls:MaterialFrame>
+
+
+                <controls:MaterialFrame 
+                                   Padding="0"
+                                   CornerRadius="0"
+                                   Elevation="4"
+                                   BackgroundColor="White"
+                                   HasShadow="True">
+
+                    <StackLayout Orientation="Vertical"
+                                        HorizontalOptions="FillAndExpand">
+
+                        <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.aboutvision.jpg}"
+                                          Aspect="AspectFill"
+                                          HorizontalOptions="FillAndExpand"
+                                          HeightRequest="200"
+                                          WidthRequest="348"/>
+
+                        <Label LineBreakMode="TailTruncation"
+                                          Text="Notre Vision"
+                                          Padding="10,0,10,0"
+                                          Style="{StaticResource TitreApplicationDetail}"
+                                          VerticalOptions="Start"
+			                              HorizontalOptions="StartAndExpand"/>
+
+                        <controls:ExpandParagraphControl Text="Offrir des solutions logicielles de gestion les plus adaptées aux activités et à l'évolution du secteur bancaire et financier africain."
+                                             TextFontSize="Caption"
+                                             TextFontAttributes="None"
+                                             Padding="10,0,10,5"
+                                             HorizontalOptions="FillAndExpand"
+                                             TextColor="{StaticResource couleurGrayNuancee1}"
+                                             DefaultVisibleLines="5"
+                                             DefaultButtonTitle="En savoir plus..."/>
+
+                    </StackLayout>
+
+                </controls:MaterialFrame>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

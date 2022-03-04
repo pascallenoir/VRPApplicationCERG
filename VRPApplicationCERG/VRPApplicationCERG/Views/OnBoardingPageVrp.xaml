@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             mc:Ignorable="d"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters"
+             Shell.NavBarIsVisible="False"
+             x:Class="VRPApplicationCERG.Views.OnBoardingPageVrp">
+
+    <StackLayout HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+
+        <RelativeLayout>
+            
+            <Image Source="Onboarding.png" 
+                Opacity="1"
+                Aspect="AspectFill"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+
+            <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+                <StackLayout Margin="25,25,25,25"
+                Orientation="Vertical"
+                Spacing="10"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+
+
+                    <!-- pied de la page -->
+                    <StackLayout VerticalOptions="EndAndExpand"
+                        Orientation="Vertical"
+                        Spacing="25"
+                        HorizontalOptions="FillAndExpand">
+
+                        <!-- ttext de direction -->
+                        <StackLayout
+                                Spacing="10"
+                                Orientation="Vertical"
+                                HorizontalOptions="FillAndExpand">
+
+
+                            <!-- Texte descriptif -->
+                            <Label Text="Cergi VRP"
+                                MaxLines="1"
+                                FontSize="22"
+                                LineBreakMode="WordWrap"
+                                FontAttributes="Bold"  
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource Primary}"/>
+
+
+                            <Label LineBreakMode="WordWrap"
+                                   FontSize="11"
+                                   MaxLines="4"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="{StaticResource Primary}"
+                                   HorizontalOptions="CenterAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Cette application est destinée aux personnels de CERGI SA. &#10;"/>
+                                        <Span Text="Merci de rentrer des identifiants de connexion valide, qui &#10;"/>
+                                        <Span Text="vous permettrons d'accéder au menu de cette &#10;"/>
+                                        <Span Text="application"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </StackLayout>
+
+                        <!-- bouton de connexion -->
+                        <Button  
+                            Text="Commencer"
+                            ContentLayout="Right, 20"
+                            CornerRadius="34"
+                            HorizontalOptions="FillAndExpand"
+                            Visual="Material"
+                            Margin="0,0,0,40"
+                            HeightRequest="50"
+                            BackgroundColor="{StaticResource VioletbuttonSoft}"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource Primary}"
+                            Clicked="navigationButton_Clicked"
+                            Command="{Binding LoginCommand}">
+                            <Button.ImageSource>
+                                <FontImageSource Glyph="&#xf0a4;"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    Color="{StaticResource Primary}"
+                                    Size="24" />
+                            </Button.ImageSource>
+                        </Button>
+                    </StackLayout>
+
+                </StackLayout>
+            </Grid>
+        </RelativeLayout>
+    </StackLayout>
+</ContentPage>

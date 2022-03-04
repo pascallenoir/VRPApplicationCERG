@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "754339972581",
+    "project_id": "pushnotificationcergivrp",
+    "storage_bucket": "pushnotificationcergivrp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754339972581:android:9e43cb40a6d89458c3db0c",
+        "android_client_info": {
+          "package_name": "com.companyname.vrpapplicationcerg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754339972581-qq2spvhdcbshkliec17qtudanbr626kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP6mcF_3RfHXpdXN3Z_3J7o9PJx-DOsm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754339972581-qq2spvhdcbshkliec17qtudanbr626kh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

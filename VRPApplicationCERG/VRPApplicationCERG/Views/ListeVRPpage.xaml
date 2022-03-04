@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+   <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VRPApplicationCERG.Views.ListeVRPpage"
+             Title="{Binding Title}"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             xmlns:local="clr-namespace:VRPApplicationCERG.ViewModels.BANQUE_VRP_VIEWMODEL"  
+             Shell.NavBarIsVisible="False"
+             Shell.NavBarHasShadow="True"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters"
+             xmlns:converters="clr-namespace:VRPApplicationCERG.Converters" 
+             xmlns:Controls="clr-namespace:VRPApplicationCERG.Controls" 
+             xmlns:localPage="clr-namespace:VRPApplicationCERG.Views" 
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converters:ConvertisseurImage x:Key="byteToImageSource" />
+
+            <!--  UTILE POUR LA LISTE DES vrp -->
+
+            <DataTemplate x:Key="CollectionVRP">
+
+                <Frame
+                    Style="{StaticResource FrameListApplication}">
+
+                    <Controls:MaterialFrame
+                           Style="{StaticResource FrameListApplicationConteneur}"
+                           Elevation="0"
+                           HorizontalOptions="FillAndExpand">
+
+                        <Grid Padding="2,2,2,2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <Image
+                                x:Name="imageProfil"
+                                Style="{StaticResource ImageListeApplication}"
+                                Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8utilisateur48.png}"
+                                Margin="0,10,10,0"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="CenterAndExpand"/>
+
+
+
+                            <StackLayout Grid.Row="0"
+                                Grid.Column="1"
+                                Spacing="0"
+                                BackgroundColor="White"
+                                Padding="0,0,0,2"
+                                Orientation="Vertical"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand">
+
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="22" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="90"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Spacing="5"
+                                         Grid.Row="0"
+                                         Grid.RowSpan="4"
+                                         Orientation="Vertical">
+
+                                        <Label Text="{Binding NOM_VRP}"
+                                            Style="{StaticResource TitrelisteApplicationItem}">
+                                        </Label>
+
+                                        <Label Text="{Binding PRENOM_VRP}"
+                                           Style="{StaticResource Descriptionlabelbold}">
+                                        </Label>
+
+                                        <Label Text="{Binding E_MAIL_VRP}"
+                                           VerticalOptions="Fill"
+                                           Style="{StaticResource Descriptionlabelsansbold}">
+                                        </Label>
+
+                                    </StackLayout>
+
+                                    <Label Grid.Row="0"
+                                  Grid.Column="1"
+                                  Text="{Binding TEL1_VRP }"
+                                  Style="{StaticResource Descriptionlabelsansbold}">
+                                    </Label>
+
+                                    <ImageButton
+                                       Grid.Row="1"
+                                       Grid.RowSpan="3"
+                                       IsVisible="{Binding Path=BindingContext.BoutonConfirmSuppression,Source={x:Reference Name=Annuler}}"
+                                       BackgroundColor="Transparent"
+                                       Grid.Column="1"
+                                       Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8effacer24violet.png}"
+                                       VerticalOptions="End"
+                                       HeightRequest="24"
+                                       WidthRequest="24"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="End"
+                                       Command="{Binding Path=BindingContext.ConfirmSuppresItemCommand, Source={x:Reference Name=ListeVRP}}"
+                                       CommandParameter="{Binding .}"/>
+                                </Grid>
+                            </StackLayout>
+                        </Grid>
+                    </Controls:MaterialFrame>
+
+                </Frame>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0"
+                 Orientation="Vertical"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Spacing="0">
+
+            <StackLayout Orientation="Vertical"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+
+                <ScrollView 
+                    Orientation="Horizontal"
+                    Padding="0,5"
+                    Margin="10,0,10,0"
+                    HorizontalScrollBarVisibility="Never"
+                    HorizontalOptions="FillAndExpand">
+
+                    <StackLayout Spacing="5"
+                         Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="CenterAndExpand">
+
+                        <Button 
+                                Text="Ajouter un VRP"
+                                ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8ajouter48violet.png}"
+                                IsVisible="{Binding BoutonActionSuppression}"
+                                TextColor="{StaticResource couleurnoir}"
+                                FontSize="12"
+                                HeightRequest="40"
+                                Padding="10,5,10,5"
+                                Margin="5,0,0,0"
+                                CornerRadius="22"
+                                HorizontalOptions="Start"
+                                ContentLayout="Left, 20"
+                                BackgroundColor="{StaticResource violetclaireButton}"
+                                Command="{Binding AddItemCommand}"/>
+                        
+                   
+
+
+                        <Button
+                               Text="Supprimer plusieurs"
+                               ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8cocheztoutesles48violet.png}"
+                               IsVisible="{Binding BoutonActionSuppression}"
+                               TextColor="{StaticResource couleurnoir}"
+                               FontSize="12"
+                               HeightRequest="40"
+                               Padding="10,5,10,5"
+                               Margin="5,0,0,0"
+                               CornerRadius="22"
+                               HorizontalOptions="Start"
+                               ContentLayout="Left, 20"
+                               BackgroundColor="{StaticResource violetclaireButton}"
+                               Command="{Binding CocheItemCommand}"/>
+
+
+                        <Button
+                               Text="Supprimer la liste"
+                                ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8supprimerlacorbeille48violet.png}"
+                                IsVisible="{Binding BoutonActionSuppression}"
+                                TextColor="{StaticResource couleurnoir}"
+                                FontSize="12"
+                                HeightRequest="40"
+                                Padding="10,5,10,5"
+                                Margin="5,0,0,0"
+                                CornerRadius="22"
+                                HorizontalOptions="Start"
+                                ContentLayout="Left, 20"
+                                BackgroundColor="{StaticResource violetclaireButton}"
+                                Command="{Binding DeleteAllItemsCommand}" />
+
+
+                        <Button x:Name="Annuler"
+                                IsVisible="{Binding BoutonConfirmSuppression}"
+                                Text="Annuler"
+                                TextColor="{StaticResource couleurnoir}"
+                                FontSize="12"
+                                HeightRequest="40"
+                                Padding="10,5,10,5"
+                                Margin="5,0,0,0"
+                                CornerRadius="22"
+                                HorizontalOptions="Start"
+                                BackgroundColor="{StaticResource violetclaireButton}"
+                                Command="{Binding AnnulerSuppresItemCommand}"/>
+
+
+                    </StackLayout>
+                </ScrollView>
+
+                <Label Text="LiSTE DES VRP"
+                       Margin="20,0,0,10"
+                       Style="{StaticResource TitreListeApplication}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Start">
+                </Label>
+
+            </StackLayout>
+
+
+            <StackLayout 
+                 Orientation="Vertical"
+                 Padding="3,5,3,2"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand">
+
+                <RefreshView x:DataType="local:BanqueVrpViewModelListe" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                    <CollectionView x:Name="ListeVRP"
+                            ItemsSource="{Binding BanqueVRPList}"
+                            Style="{StaticResource CollectionviewListeStyle}"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                            SelectionMode="Single"
+                            ItemTemplate="{StaticResource CollectionVRP}">
+
+                        <CollectionView.EmptyView>
+
+                            <StackLayout Orientation="Vertical"
+                                     BackgroundColor="White"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand"
+                                     Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                     Margin="0,10,0,0"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="CenterAndExpand"
+                                     Spacing="10">
+
+                                    <Label Text="Aucun element"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Style="{StaticResource TitreListeApplication}"
+                                        VerticalOptions="Center">
+                                    </Label>
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </CollectionView.EmptyView>
+
+                    </CollectionView>
+                </RefreshView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </Grid>
+    <!--fin de ligne-->
+
+</ContentPage>
+

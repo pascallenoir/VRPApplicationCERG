@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:custom="clr-namespace:VRPApplicationCERG.Controls"
+      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+      xmlns:converter="clr-namespace:VRPApplicationCERG.Helpers.Converters" 
+      xmlns:behaviour="clr-namespace:VRPApplicationCERG.Helpers.Behaviours" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             ios:Page.UseSafeArea="true"
+      Shell.NavBarIsVisible="False"
+      Shell.TabBarIsVisible="False"
+      Shell.PresentationMode="ModalAnimated"
+      x:Class="VRPApplicationCERG.Views.MiseajourVRPPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout  Orientation="Vertical"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Spacing="0">
+
+            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="FillAndExpand"
+                         BackgroundColor="{StaticResource couleurGrisBackgroundHeaD}"
+                         VerticalOptions="Start"
+                         Spacing="10">
+
+                <!--bouton fermer-->
+                <ImageButton Style="{StaticResource ImageBoutonAjoutEtDetail}"
+                       Margin="10,30,0,0"
+                      Command="{Binding CancelCommand}"/>
+
+                <!--titre -->
+                <Label Text="Mise à jour VRP"
+                         LineBreakMode="TailTruncation"
+                         Margin="10,5,10,10"
+                         Style="{StaticResource TitreApplication}"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"/>
+
+            </StackLayout>
+
+            <BoxView 
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="End"
+                     Style="{StaticResource BoxviewHead}"/>
+
+
+            <StackLayout HorizontalOptions="FillAndExpand"
+                Padding="20,10,20,0"
+                VerticalOptions="FillAndExpand">
+
+
+                <ScrollView 
+                    HorizontalOptions="FillAndExpand"
+                    Padding="0,0,0,20"
+                    VerticalOptions="FillAndExpand">
+
+                    <StackLayout Spacing="20"
+                        Orientation="Vertical"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+
+
+                        <!--Champs de saisie -->
+                        <StackLayout Orientation="Vertical"
+                            Margin="15,15,15,20"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="15">
+
+                            <Label  Style="{StaticResource TitreListeApplicationGrayDetailUppercase}"
+                              Margin="0,10,0,-5"
+                              HorizontalOptions="End"
+                              Text="INFORMATION VRP"/>
+
+                            <!--Ajout de code vrp sur l'ecran nouveau vrp-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Code"
+                                    Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                MaxLength="5"
+                                Placeholder="Saisir le code du vrp"
+                                Text="{Binding CODE_VRP}"
+                                Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding CODE_VRP.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding CODE_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                   IsVisible="{Binding CODE_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                   Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+                            <!--Ajout de nom vrp sur l'ecran nouveau vrp-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Nom"
+                           Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                Placeholder="Nom"
+                                Text="{Binding NOM_VRP}"
+                                Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding NOM_VRP.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding NOM_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                   IsVisible="{Binding NOM_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                   Style="{StaticResource ErrorTextStyle}"/>
+                            </StackLayout>
+
+
+                            <!--Ajout de prenom vrp sur l'ecran nouveau vrp-->
+                            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Prenoms"
+                            Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                Placeholder="Saisir prenom"
+                                Text="{Binding PRENOM_VRP}"
+                                Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding PRENOM_VRP.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding PRENOM_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                   IsVisible="{Binding PRENOM_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                   Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+
+                            <!--Ajout d'email vrp sur l'ecran nouveau vrp-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Email"
+                             Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Email"
+                                Placeholder="Saisir l'email"
+                                Text="{Binding E_MAIL_VRP}"
+                                Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding E_MAIL_VRP.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding E_MAIL_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding E_MAIL_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+
+
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label  Style="{StaticResource TitreListeApplicationGrayDetailUppercase}"
+                              Margin="0,10,0,0"
+                              HorizontalOptions="End"
+                              Text="ADRESSE PRINCIPALE"/>
+
+
+                                <!--Ajout d'adresse vrp sur l'ecran nouveau vrp-->
+                                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Adresse principale"
+                               Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                        <custom:EntryRenderers 
+                                        Keyboard="Text"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Saisir l'addresse"
+                                        Text="{Binding ADR1_VRP}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                            <custom:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding ADR1_VRP.IsValid}"/>
+                                            </custom:EntryRenderers.Behaviors>
+                                        </custom:EntryRenderers>
+
+                                    </yummy:PancakeView>
+
+                                    <Label Text="{Binding ADR1_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding ADR1_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+
+
+                                <!--Ajout du telephone vrp sur l'ecran nouveau vrp-->
+                                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Telephone principal"
+                            Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                        <custom:EntryRenderers Keyboard="Telephone"
+                                    Placeholder="Saisir le contact"
+                                    Text="{Binding TEL1_VRP}"
+                                    Style="{StaticResource ChampsSaisie}">
+                                            <custom:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding TEL1_VRP.IsValid}"/>
+                                            </custom:EntryRenderers.Behaviors>
+                                        </custom:EntryRenderers>
+
+                                    </yummy:PancakeView>
+                                    
+                                    <Label Text="{Binding TEL1_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding TEL1_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+                            </StackLayout>
+
+
+                            <StackLayout Orientation="Vertical"
+                      HorizontalOptions="FillAndExpand">
+
+                                <Label  Style="{StaticResource TitreListeApplicationGrayDetailUppercase}"
+                              Margin="0,10,0,0"
+                              HorizontalOptions="End"
+                              Text="ADRESSE SECONDAIRE"/>
+
+                                <!--Ajout d'addresse vrp sur l'ecran nouveau vrp-->
+                                <StackLayout Orientation="Vertical"
+                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Adresse secondaire" 
+                                  Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                        <custom:EntryRenderers 
+                                 Keyboard="Text"
+                                 Placeholder="Saisir l'addresse secondaire"
+                                 Text="{Binding ADR2_VRP}"
+                                 IsVisible="{Binding AdresseSecondaireVisibility}"
+                                 Style="{StaticResource ChampsSaisie}">
+                                            <custom:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding ADR2_VRP.IsValid}"/>
+                                            </custom:EntryRenderers.Behaviors>
+                                        </custom:EntryRenderers>
+
+                                    </yummy:PancakeView>
+
+                                    <Label Text="{Binding ADR2_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding ADR2_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+
+                                <!--Ajout de telephone vrp sur l'ecran nouveau vrp-->
+                                <StackLayout Orientation="Vertical"
+                      HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Telephone secondaire"
+                            Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                        <custom:EntryRenderers Keyboard="Telephone"
+                                    Placeholder="Saisir le contact secondaire"
+                                    Text="{Binding TEL2_VRP}"
+                                    IsVisible="{Binding ContactSecondaireVisibility}"
+                                    Style="{StaticResource ChampsSaisie}">
+                                            <custom:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding TEL2_VRP.IsValid}"/>
+                                            </custom:EntryRenderers.Behaviors>
+                                        </custom:EntryRenderers>
+
+                                    </yummy:PancakeView>
+
+                                    <Label Text="{Binding TEL2_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding TEL2_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+                            </StackLayout>
+
+                            <!--Pieds de page et validation du formulaire-->
+                            <yummy:PancakeView 
+                                Padding="10,10"
+                                CornerRadius="10"
+                                VerticalOptions="End"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="{StaticResource violetclaireoPACITYPUR}"
+                                HasShadow="False">
+
+                                <StackLayout Orientation="Vertical"
+                                     Padding="5,5"
+                                     Spacing="10">
+
+
+                                    <!--element 1-->
+                                    <Label Margin="10,0,10,0"
+                            Text="En cliquant sur le bouton d'enregistrement, vous faites le choix de modifier cette application et d'y ajouter un nouvel élément accessible et visible par tous les utilisateurs"
+                            Style="{StaticResource Descriptionlabelgraysansbold}"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"/>
+
+                                    <Button Text="Modifier" 
+                            Style="{StaticResource BoutonApplicationBold}"
+                            HorizontalOptions="EndAndExpand"
+                            Command="{Binding SaveCommand}"/>
+
+                                </StackLayout>
+                            </yummy:PancakeView>
+
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

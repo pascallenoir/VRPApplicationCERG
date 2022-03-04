@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+      xmlns:custom="clr-namespace:VRPApplicationCERG.Controls"
+      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+     xmlns:converter="clr-namespace:VRPApplicationCERG.Helpers.Converters" 
+     xmlns:behaviour="clr-namespace:VRPApplicationCERG.Helpers.Behaviours" 
+      xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+      ios:Page.UseSafeArea="true"
+      Shell.NavBarIsVisible="False"
+      Shell.TabBarIsVisible="False"
+      Shell.PresentationMode="ModalAnimated"
+      x:Class="VRPApplicationCERG.Views.AjoutEtsBancairePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+
+        <StackLayout  Orientation="Vertical"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Spacing="0">
+
+            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="FillAndExpand"
+                         BackgroundColor="{StaticResource couleurGrisBackgroundHeaD}"
+                         VerticalOptions="Start"
+                         Spacing="20">
+
+                <!--bouton fermer-->
+                <ImageButton Style="{StaticResource ImageBoutonAjoutEtDetail}"
+                       Margin="10,30,0,0"
+                      Command="{Binding CancelCommand}"/>
+
+                <!--titre -->
+                <Label Text="Etablissement bancaire"
+                         LineBreakMode="TailTruncation"
+                         Margin="10,5,10,10"
+                         Style="{StaticResource TitreApplication}"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"/>
+
+            </StackLayout>
+
+            <BoxView 
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="End"
+                     Style="{StaticResource BoxviewHead}"/>
+
+
+            <StackLayout HorizontalOptions="FillAndExpand"
+                Padding="10,10,10,0"
+                VerticalOptions="FillAndExpand">
+
+                
+                <ScrollView 
+                    HorizontalOptions="FillAndExpand"
+                    Padding="0,0,0,20"
+                    VerticalOptions="FillAndExpand">
+
+                    <StackLayout Spacing="20"
+                        Orientation="Vertical"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+
+
+                        <!--Champs de saisie -->
+                        <StackLayout Orientation="Vertical"
+                            Margin="10,15,10,20"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="15">
+
+                                 <!--PAYS_CODE-->
+                                <StackLayout Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Code pays"
+                                        Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                        <custom:EntryRenderers Keyboard="Text"
+                                            MaxLength="4"
+                                            Placeholder="Entrer le code pays"
+                                            Text="{Binding PAYS_CODE.Value}"
+                                            Style="{StaticResource ChampsSaisie}">
+                                            <custom:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding PAYS_CODE.IsValid}"/>
+                                            </custom:EntryRenderers.Behaviors>
+                                        </custom:EntryRenderers>
+
+                                    </yummy:PancakeView>
+
+                                    <Label Text="{Binding PAYS_CODE.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                   IsVisible="{Binding PAYS_CODE.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                   Style="{StaticResource ErrorTextStyle}"/>
+
+                                </StackLayout>
+
+                                <!--BANQUE_CODE_BCEAO-->
+                                <StackLayout Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="Code banque bceao"
+                                           Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                    <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                        <custom:EntryRenderers Keyboard="Text"
+                                            Placeholder="Entrer banque code bceao"
+                                            Text="{Binding BANQUE_CODE_BCEAO.Value}"
+                                            Style="{StaticResource ChampsSaisie}">
+                                            <custom:EntryRenderers.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_CODE_BCEAO.IsValid}"/>
+                                            </custom:EntryRenderers.Behaviors>
+                                        </custom:EntryRenderers>
+
+                                    </yummy:PancakeView>
+
+                                    <Label Text="{Binding BANQUE_CODE_BCEAO.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                        IsVisible="{Binding BANQUE_CODE_BCEAO.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                        Style="{StaticResource ErrorTextStyle}"/>
+                                </StackLayout>
+                                
+                            <!--BANQUE_NOM-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Nom de la banque"
+                                       Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer nom de la banque"
+                                        Text="{Binding BANQUE_NOM.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_NOM.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding BANQUE_NOM.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_NOM.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                            <!--BANQUE_SIGLE-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Sigle banque"
+                                      Margin="10,0,0,0"
+                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer sigle banque"
+                                        Text="{Binding BANQUE_SIGLE.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_SIGLE.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding BANQUE_SIGLE.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_SIGLE.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                            <!--BANQUE_DATE_SUSP-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Banque date susp"
+                                    Margin="10,0,0,0"
+                                    Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer banque date susp"
+                                        Text="{Binding BANQUE_DATE_SUSP.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_DATE_SUSP.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding BANQUE_DATE_SUSP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_DATE_SUSP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                            <!--Cle de banque BCEAO-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Clé de banque BCEAO"
+                                    Margin="10,0,0,0"
+                                    Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer clé de banque BCEAO"
+                                        Text="{Binding BANQUE_CODE_REMET.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_CODE_REMET.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding BANQUE_CODE_REMET.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_CODE_REMET.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                            <!--Banque code remet-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Banque code remet"
+                                   Margin="10,0,0,0"
+                                   Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer banque code remet"
+                                        Text="{Binding BANQUE_CODE_REMET.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_CODE_REMET.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding BANQUE_CODE_REMET.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_CODE_REMET.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                            <!--Code formule-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Code formule"
+                                    Margin="10,0,0,0"
+                                    Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer Code formule"
+                                        Text="{Binding CODE_FORMULE.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding CODE_FORMULE.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding CODE_FORMULE.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding CODE_FORMULE.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                            <!--Banque sdevmt-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Banque sdevmt"
+                                    Margin="10,0,0,0"
+                                    Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer banque sdevmt"
+                                        Text="{Binding BANQUE_SDEVMT.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_SDEVMT.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding BANQUE_SDEVMT.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_SDEVMT.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                            <!--Banque BF-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Banque BF"
+                                     Margin="10,0,0,0"
+                                     Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer banque BF"
+                                        Text="{Binding BANQUE_B_F.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding BANQUE_B_F.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding BANQUE_B_F.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding BANQUE_B_F.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                            <!--Matricule Etat civil-->
+                            <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Etat civil/Matricule"
+                                    Margin="10,0,0,0"
+                                    Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                        Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+                                    <custom:EntryRenderers Keyboard="Text"
+                                        Placeholder="Entrer matricule ETCIV"
+                                        Text="{Binding ETCIV_MATRICULE.Value}"
+                                        Style="{StaticResource ChampsSaisie}">
+                                        <custom:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding ETCIV_MATRICULE.IsValid}"/>
+                                        </custom:EntryRenderers.Behaviors>
+                                    </custom:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding ETCIV_MATRICULE.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                IsVisible="{Binding ETCIV_MATRICULE.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+                            <!--Pieds de page-->
+                            <yummy:PancakeView 
+                                Padding="10,10"
+                                CornerRadius="10"
+                                VerticalOptions="End"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="{StaticResource violetclaireoPACITYPUR}"
+                                HasShadow="False">
+                            
+                            <StackLayout Orientation="Vertical"
+                                     Padding="5,5"
+                                     Spacing="10">
+
+                                <!--element 1-->
+                                <Label Text="En cliquant sur le bouton d'enregistrement, vous faites le choix de modifier cette application et d'y ajouter un nouvel élément accessible et visible par tous les utilisateurs"
+                                    Style="{StaticResource Descriptionlabelgraysansbold}"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand"/>
+
+                                <Button Text="Enregistrer" 
+                                    Style="{StaticResource BoutonApplicationBold}"
+                                    HorizontalOptions="EndAndExpand"
+                                    Command="{Binding SaveCommand}"/>
+
+                            </StackLayout>
+                            </yummy:PancakeView>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

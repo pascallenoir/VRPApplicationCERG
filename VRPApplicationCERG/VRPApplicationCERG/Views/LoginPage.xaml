@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:control="clr-namespace:VRPApplicationCERG.Controls" 
+             xmlns:behaviour="clr-namespace:VRPApplicationCERG.Helpers.Behaviours" 
+             xmlns:converter="clr-namespace:VRPApplicationCERG.Helpers.Converters"
+             mc:Ignorable="d"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="{StaticResource FondLogin}"
+             x:Class="VRPApplicationCERG.Views.LoginPage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+
+
+        <StackLayout Orientation="Vertical"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Vertical"
+                   Spacing="30"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="CenterAndExpand">
+
+                <!-- Entete de page -->
+                <StackLayout VerticalOptions="StartAndExpand"
+                       Spacing="0"
+                       Margin="20,20,20,0"
+                       HorizontalOptions="FillAndExpand">
+
+                    <!-- Texte descriptif -->
+                    <Label Text="Ravi de vous revoir !"
+                       MaxLines="1"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Start"
+                       FontSize="25"
+                       LineBreakMode="WordWrap"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource couleurchampsdesaisieBleu}"/>
+
+                    <Label LineBreakMode="WordWrap"
+                           FontSize="12"
+                           TextColor="{StaticResource couleurchampsdesaisieBleu}"
+                           Text="Merci de vous connecter pour continuer"
+                           HorizontalOptions="StartAndExpand"/>
+
+                </StackLayout>
+
+                <yummy:PancakeView
+                        Padding="15,15"
+                        Margin="20,0,20,0"
+                        CornerRadius="10"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#FFFFFF"
+                        HasShadow="True">
+
+                    <!-- centre de la page -->
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                Spacing="10"
+                                HorizontalOptions="FillAndExpand">
+
+                        <StackLayout VerticalOptions="StartAndExpand"
+                                Spacing="0"
+                                Orientation="Horizontal"
+                                HorizontalOptions="FillAndExpand">
+
+                            <!-- Texte descriptif -->
+                            <Label Text="Connexion"
+                                MaxLines="1"
+                                FontSize="25"
+                                Margin="0,0,0,10"
+                                VerticalOptions="StartAndExpand"
+                                LineBreakMode="WordWrap"
+                                FontAttributes="Bold"  
+                                HorizontalOptions="FillAndExpand"
+                                TextColor="{StaticResource couleurchampsdesaisieBleu}"/>
+
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical"
+                                         Spacing="5"
+                                         VerticalOptions="EndAndExpand">
+
+                            <!--CHamps nom utilisateur-->
+                            <StackLayout Orientation="Vertical"
+                                  Spacing="5"
+                                  HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Email"
+                                     Margin="5,0,0,0"
+                                     Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                       Style="{StaticResource PancakeChampsaisiepersonnaliséLogin}">
+
+                                    <control:EntryRenderers Keyboard="Text"
+                                             Placeholder="Saisir l'email"
+                                             Text="{Binding E_MAIL_USER_VRP.Value}"
+                                             Style="{StaticResource ChampsSaisieLogin}">
+                                        <control:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding E_MAIL_USER_VRP.IsValid}"/>
+                                        </control:EntryRenderers.Behaviors>
+                                    </control:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding E_MAIL_USER_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                        IsVisible="{Binding E_MAIL_USER_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                        Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+                            <!--CHamps mot de passe-->
+                            <StackLayout Orientation="Vertical"
+                                    Spacing="5"
+                                    HorizontalOptions="FillAndExpand">
+
+                                <Label Text="Mot de passe"
+                               Margin="5,0,0,0"
+                               Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                               Style="{StaticResource PancakeChampsaisiepersonnaliséLogin}">
+
+                                    <control:EntryRenderers Keyboard="Text"
+                                                Placeholder="Mot de passe"
+                                                IsPassword="True"
+                                                Text="{Binding MOTDEPASSE_USER_VRP.Value}"
+                                                Style="{StaticResource ChampsSaisieLogin}">
+                                        <control:EntryRenderers.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding MOTDEPASSE_USER_VRP.IsValid}"/>
+                                        </control:EntryRenderers.Behaviors>
+                                    </control:EntryRenderers>
+
+                                </yummy:PancakeView>
+
+                                <Label Text="{Binding MOTDEPASSE_USER_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                   IsVisible="{Binding MOTDEPASSE_USER_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                   Style="{StaticResource ErrorTextStyle}"/>
+
+                            </StackLayout>
+
+
+                        </StackLayout>
+
+                        <!-- text de direction -->
+                        <Label LineBreakMode="WordWrap"
+                               HorizontalOptions="EndAndExpand"
+                               HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Mot de passe oublié ? "
+                                         FontSize="13"
+                                        TextColor="{StaticResource couleurGrayNuancee1}" />
+
+                                    <Span Text="Continuer"
+                                      FontSize="15"
+                                      TextColor="{StaticResource couleurchampsdesaisieBleu}"
+                                      FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ForgetPasswordCommand}" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
+
+
+                </yummy:PancakeView>
+
+                <!-- pied de la page -->
+                <StackLayout VerticalOptions="EndAndExpand"
+                        Orientation="Vertical"
+                        Margin="20,0,20,30"
+                        Padding="10"
+                        Spacing="10"
+                        HorizontalOptions="FillAndExpand">
+
+
+                    <StackLayout Orientation="Vertical"
+                               Padding="10,10,10,15"
+                               VerticalOptions="End"
+                               HorizontalOptions="FillAndExpand"
+                               Spacing="20">
+
+                    <!--element 1-->
+
+                    <!-- text de direction -->
+                    <Label LineBreakMode="WordWrap"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource Descriptionlabelgraysansbold}"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Cette application est destinée aux personnels de CERGI SA. &#10;"/>
+                                    <Span Text="Merci de rentrer des identifiants de connexion valide, qui &#10;"/>
+                                    <Span Text="vous permettrons d'accéder au menu de cette &#10;"/>
+                                    <Span Text="application"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    <!-- bouton de connexion -->
+                    <Button VerticalOptions="End" 
+                                Text="Se Connecter"
+                                CornerRadius="34"
+                                HorizontalOptions="FillAndExpand"
+                                Visual="Material"
+                                HeightRequest="50"
+                                BackgroundColor="{StaticResource VioletbuttonSoft}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource Primary}"
+                                Command="{Binding LoginCommand}"/>
+
+                </StackLayout>
+
+
+            </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

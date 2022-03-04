@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Utilisateur"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:Controls="clr-namespace:VRPApplicationCERG.Controls" 
+             xmlns:converters="clr-namespace:VRPApplicationCERG.Converters"
+             Shell.NavBarIsVisible="True"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters" 
+             xmlns:behaviors="clr-namespace:VRPApplicationCERG.Behaviors" xmlns:custom="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:behaviour="clr-namespace:VRPApplicationCERG.Helpers.Behaviours"
+             Shell.NavBarHasShadow="False"
+             ios:Page.UseSafeArea="true"
+             x:Class="VRPApplicationCERG.Views.ListeUserPage">
+
+    <Shell.TitleView>
+
+        <StackLayout Orientation="Horizontal"
+                     Margin="0,0,10,0"
+                     Padding="{OnPlatform iOS='0,0,5,0', Android='0,0,10,0', Default=0}"
+                     HorizontalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Vertical" 
+                     VerticalOptions="CenterAndExpand"
+                     Spacing="5"
+                     HorizontalOptions="StartAndExpand">
+
+                <Label Text="Messagerie"
+                   Style="{StaticResource TitreListeApplicationNav}"
+                   LineBreakMode="TailTruncation"/>
+            </StackLayout>
+
+        </StackLayout>
+    </Shell.TitleView>
+
+
+    <!--debut de ligne-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converters:ConvertisseurImage x:Key="byteToImageSource" />
+
+            <!--  UTILE POUR LA LISTE DES vrp -->
+            <DataTemplate x:Key="CollectionNotification">
+
+                <!--<Frame
+                   Style="{StaticResource FrameListApplication}">-->
+
+
+                <Controls:MaterialFrame
+                           Style="{StaticResource FrameListApplicationConteneurPetit}"
+                           Elevation="0"
+                           HorizontalOptions="FillAndExpand">
+                    <Grid Padding="2,2,2,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <Image
+                           x:Name="imageProfil"
+                           Style="{StaticResource ImageListePrincipaleApplication}"
+                           Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8utilisateur96.png}"
+                           Margin="5,0,5,0"
+                           VerticalOptions="StartAndExpand"
+                           HorizontalOptions="CenterAndExpand"/>
+
+
+                        <StackLayout Grid.Row="0"
+                                Grid.Column="1"
+                                Spacing="0"
+                                BackgroundColor="White"
+                                Orientation="Vertical"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Spacing="5"
+                                         Grid.Row="1"
+                                         Grid.Column="0"
+                                         Orientation="Vertical">
+
+                                    <Label Text="Nom utilisateur"
+                                            Style="{StaticResource TitrelisteApplicationItem}">
+                                    </Label>
+                                    
+                                </StackLayout>
+
+                                <BoxView Grid.Row="0"
+                                    Grid.Column="0"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="End"
+                                    Style="{StaticResource Boxview}"/>
+
+                            </Grid>
+                        </StackLayout>
+
+                    </Grid>
+                </Controls:MaterialFrame>
+
+
+                <!--</Frame>-->
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0"
+                 Orientation="Vertical"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Spacing="0">
+
+            <StackLayout Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+
+                <!--titre de la page et de la liste-->
+                <Label Margin="20,10,0,10"
+					LineBreakMode="TailTruncation"
+                    Text="Personnes"
+                    Style="{StaticResource GrosTitreListeApplication}"
+                    VerticalOptions="Start"
+					HorizontalOptions="StartAndExpand"/>
+
+            </StackLayout>
+
+            <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                            Margin="20,0,20,10"
+                            Style="{StaticResource PancakeChampsaisiepersonnalisé}">
+
+
+                <Controls:SearchBarRendererControl x:Name="searchBar2"
+                           Placeholder="Rechercher dans personnes"
+                           Text="{Binding SearchText}"
+                           Style="{StaticResource ChampsDeRecherche}">
+                    <Controls:SearchBarRendererControl.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged" 
+                                           Command="{Binding SearchCommand}"/>
+                    </Controls:SearchBarRendererControl.Behaviors>
+                </Controls:SearchBarRendererControl>
+
+            </yummy:PancakeView>
+
+            <!--barre de recherche-->
+            <Controls:MaterialFrame Margin="20,0,10,10"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource FrameChampsaisiepersonnaliséSearch}">
+
+                <Controls:SearchBarRendererControl x:Name="searchBar"
+                           Placeholder="Rechercher dans personnes"
+                           Text="{Binding SearchText}"
+                           Style="{StaticResource ChampsDeRecherche}">
+                    <Controls:SearchBarRendererControl.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged" 
+                                           Command="{Binding SearchCommand}"/>
+                    </Controls:SearchBarRendererControl.Behaviors>
+                </Controls:SearchBarRendererControl>
+
+            </Controls:MaterialFrame>
+
+            <!--Stacklayout contenant la liste-->
+            <StackLayout 
+                 Orientation="Vertical"
+                 Padding="3,5,3,10"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand">
+
+                <RefreshView  Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                    <CollectionView x:Name="ListeUtilisateur"
+                            ItemsSource="{Binding BanqueVRPList}"
+                            Style="{StaticResource CollectionviewListeStyle}"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                            ItemTemplate="{StaticResource CollectionNotification}">
+                        <CollectionView.EmptyView>
+
+                            <StackLayout Orientation="Vertical"
+                                     Padding="15,0,15,0"
+                                     BackgroundColor="{StaticResource Primary}"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand"
+                                     Spacing="0">
+
+                                <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="CenterAndExpand"
+                                     Spacing="10">
+
+                                    <Frame
+                                        Padding="0"                   
+                                        CornerRadius="210"
+                                        Margin="2,2,2,2"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        HeightRequest="210"
+                                        WidthRequest="210"
+                                        BackgroundColor="{StaticResource couleurGrisFondClair}"
+                                        HasShadow="false">
+
+                                        <custom:CircleImage
+                                         Aspect="AspectFit"
+                                         HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="CenterAndExpand"
+                                         HeightRequest="150"
+                                         WidthRequest="150"
+                                         Source="{pathimage:ImageResource VRPApplicationCERG.Images.avatarprofilPro.png}"/>
+
+                                    </Frame>
+
+                                    <Label Text="Cette Liste est vide."
+                                        Style="{StaticResource TitreCrouselApplication}"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center" />
+
+                                    <Label Text="Aucun élément n'a été trouvé dans cette liste. Il sagit peut etre d'une erreur réseaux. Vérifiez l'état de votre connexion internet."
+                                        HorizontalOptions="CenterAndExpand"
+                                        Style="{StaticResource DescriptionlabelsansboldCarousel}"/>
+
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </CollectionView.EmptyView>
+
+                    </CollectionView>
+                </RefreshView>
+
+            </StackLayout>
+
+        </StackLayout>
+
+
+
+
+    </Grid>
+    <!--fin de ligne-->
+</ContentPage>

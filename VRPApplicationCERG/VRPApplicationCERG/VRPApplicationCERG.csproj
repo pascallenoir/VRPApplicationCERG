@@ -1,0 +1,494 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\aboutmission.jpg" />
+    <None Remove="Images\aboutplan.jpg" />
+    <None Remove="Images\Aboutuspagerafiki.png" />
+    <None Remove="Images\aboutvision.jpg" />
+    <None Remove="Images\avatarprofilPro.png" />
+    <None Remove="Images\cergiLogo.png" />
+    <None Remove="Images\Companyrafiki.png" />
+    <None Remove="Images\courthouse32.png" />
+    <None Remove="Images\courthouse64.png" />
+    <None Remove="Images\email_open_48px.png" />
+    <None Remove="Images\Emptyamico.png" />
+    <None Remove="Images\Financeamico.png" />
+    <None Remove="Images\Formspana.png" />
+    <None Remove="Images\FriendshipDaybro.png" />
+    <None Remove="Images\Groupvideoamico.png" />
+    <None Remove="Images\Groupvideopana.png" />
+    <None Remove="Images\handslogo.png" />
+    <None Remove="Images\icons8addlist30.png" />
+    <None Remove="Images\icons8addlist60.png" />
+    <None Remove="Images\icons8addlist90.png" />
+    <None Remove="Images\icons8ajouter24violet.png" />
+    <None Remove="Images\icons8ajouter48violet.png" />
+    <None Remove="Images\icons8ajouter96violet.png" />
+    <None Remove="Images\icons8ajouterappareilphoto48.png" />
+    <None Remove="Images\icons8appelezunhomme24violet.png" />
+    <None Remove="Images\icons8appelezunhomme30violet.png" />
+    <None Remove="Images\icons8appelezunhomme48violet.png" />
+    <None Remove="Images\icons8appelezunhomme96violet.png" />
+    <None Remove="Images\icons8back24.png" />
+    <None Remove="Images\icons8back48.png" />
+    <None Remove="Images\icons8back96.png" />
+    <None Remove="Images\icons8bulletedlist24.png" />
+    <None Remove="Images\icons8bulletedlist48.png" />
+    <None Remove="Images\icons8bulletedlist96.png" />
+    <None Remove="Images\icons8callmale30.png" />
+    <None Remove="Images\icons8callmale60.png" />
+    <None Remove="Images\icons8callmale90.png" />
+    <None Remove="Images\icons8casecochervérifiée24violet.png" />
+    <None Remove="Images\icons8cocheztoutesles24violet.png" />
+    <None Remove="Images\icons8cocheztoutesles48violet.png" />
+    <None Remove="Images\icons8cocheztoutesles96violet.png" />
+    <None Remove="Images\icons8collapsearrow48.png" />
+    <None Remove="Images\icons8collapsearrow96.png" />
+    <None Remove="Images\icons8deletebin48.png" />
+    <None Remove="Images\icons8deletebin48red.png" />
+    <None Remove="Images\icons8deletebin96.png" />
+    <None Remove="Images\icons8deletebin96red.png" />
+    <None Remove="Images\icons8edit64.png" />
+    <None Remove="Images\icons8editmessage24.png" />
+    <None Remove="Images\icons8editmessage48.png" />
+    <None Remove="Images\icons8editmessage96.png" />
+    <None Remove="Images\icons8effacer24violet.png" />
+    <None Remove="Images\icons8effacer48violet.png" />
+    <None Remove="Images\icons8effacer96violet.png" />
+    <None Remove="Images\icons8exit49.png" />
+    <None Remove="Images\icons8exit98.png" />
+    <None Remove="Images\icons8expandarrow48.png" />
+    <None Remove="Images\icons8expandarrow96.png" />
+    <None Remove="Images\icons8export48.png" />
+    <None Remove="Images\icons8export96.png" />
+    <None Remove="Images\icons8genealogy32.png" />
+    <None Remove="Images\icons8genealogy32bounce.png" />
+    <None Remove="Images\icons8genealogy64.png" />
+    <None Remove="Images\icons8genealogy64bounce.png" />
+    <None Remove="Images\icons8genealogy96.png" />
+    <None Remove="Images\icons8genealogy96bounce.png" />
+    <None Remove="Images\icons8guardian24.png" />
+    <None Remove="Images\icons8guardian30bounce.png" />
+    <None Remove="Images\icons8guardian48.png" />
+    <None Remove="Images\icons8guardian60bounce.png" />
+    <None Remove="Images\icons8guardian90bounce.png" />
+    <None Remove="Images\icons8guardian96.png" />
+    <None Remove="Images\icons8house24.png" />
+    <None Remove="Images\icons8house48.png" />
+    <None Remove="Images\icons8house96.png" />
+    <None Remove="Images\icons8info30bounce.png" />
+    <None Remove="Images\icons8info60bounce.png" />
+    <None Remove="Images\icons8info90bounce.png" />
+    <None Remove="Images\icons8language24bounce.png" />
+    <None Remove="Images\icons8language48bounce.png" />
+    <None Remove="Images\icons8language96bounce.png" />
+    <None Remove="Images\icons8listview30bounce.png" />
+    <None Remove="Images\icons8listview60bounce.png" />
+    <None Remove="Images\icons8listview90bounce.png" />
+    <None Remove="Images\icons8menu24.png" />
+    <None Remove="Images\icons8menu48.png" />
+    <None Remove="Images\icons8menu96.png" />
+    <None Remove="Images\icons8menurounded24.png" />
+    <None Remove="Images\icons8menurounded48.png" />
+    <None Remove="Images\icons8menurounded96.png" />
+    <None Remove="Images\icons8modifier24violet.png" />
+    <None Remove="Images\icons8modifier30.png" />
+    <None Remove="Images\icons8modifier48violet.png" />
+    <None Remove="Images\icons8modifier60.png" />
+    <None Remove="Images\icons8modifier90.png" />
+    <None Remove="Images\icons8modifier96violet.png" />
+    <None Remove="Images\icons8multiplier30.png" />
+    <None Remove="Images\icons8multiplier60.png" />
+    <None Remove="Images\icons8multiplier90.png" />
+    <None Remove="Images\icons8multiply100.png" />
+    <None Remove="Images\icons8multiply24.png" />
+    <None Remove="Images\icons8multiply48.png" />
+    <None Remove="Images\icons8multiply50.png" />
+    <None Remove="Images\icons8multiply96.png" />
+    <None Remove="Images\icons8museum24.png" />
+    <None Remove="Images\icons8museum30bounce.png" />
+    <None Remove="Images\icons8museum48.png" />
+    <None Remove="Images\icons8museum60bounce.png" />
+    <None Remove="Images\icons8museum90bounce.png" />
+    <None Remove="Images\icons8museum96.png" />
+    <None Remove="Images\icons8notification24.png" />
+    <None Remove="Images\icons8notification24bounce.png" />
+    <None Remove="Images\icons8notification48.png" />
+    <None Remove="Images\icons8notification48bounce.png" />
+    <None Remove="Images\icons8notification96.png" />
+    <None Remove="Images\icons8notification96bounce.png" />
+    <None Remove="Images\icons8nouveaumessage24violet.png" />
+    <None Remove="Images\icons8nouveaumessage48violet.png" />
+    <None Remove="Images\icons8nouveaumessage96violet.png" />
+    <None Remove="Images\icons8plusBleu.png" />
+    <None Remove="Images\icons8plusmath24.png" />
+    <None Remove="Images\icons8plusmath48.png" />
+    <None Remove="Images\icons8plusmath60.png" />
+    <None Remove="Images\icons8plusmath96.png" />
+    <None Remove="Images\icons8plusViolet.png" />
+    <None Remove="Images\icons8search24.png" />
+    <None Remove="Images\icons8search48.png" />
+    <None Remove="Images\icons8search96.png" />
+    <None Remove="Images\icons8settings24.png" />
+    <None Remove="Images\icons8settings48.png" />
+    <None Remove="Images\icons8settings96.png" />
+    <None Remove="Images\icons8supprimerlacorbeille24violet.png" />
+    <None Remove="Images\icons8supprimerlacorbeille48violet.png" />
+    <None Remove="Images\icons8supprimerlacorbeille96violet.png" />
+    <None Remove="Images\icons8utilisateur48.png" />
+    <None Remove="Images\icons8utilisateur96.png" />
+    <None Remove="Images\icons8videocall24.png" />
+    <None Remove="Images\icons8videocall48.png" />
+    <None Remove="Images\icons8videocall96.png" />
+    <None Remove="Images\icons8whatsapp24.png" />
+    <None Remove="Images\icons8whatsapp48.png" />
+    <None Remove="Images\icons8whatsapp96.png" />
+    <None Remove="Images\icons8wifioff48.png" />
+    <None Remove="Images\icons8wifioff96.png" />
+    <None Remove="Images\icons8world30bounce.png" />
+    <None Remove="Images\icons8world60bounce.png" />
+    <None Remove="Images\icons8world90bounce.png" />
+    <None Remove="Images\loginbackground1.png" />
+    <None Remove="Images\Mailamico.png" />
+    <None Remove="Images\Meetingamico.png" />
+    <None Remove="Images\Mentionamico.png" />
+    <None Remove="Images\Mobilelogincuate.png" />
+    <None Remove="Images\Pushnotificationspana.png" />
+    <None Remove="Images\Searchrafiki.png" />
+    <None Remove="Images\usersecond.png" />
+    <None Remove="Images\usersecond16.png" />
+    <None Remove="Images\usersecond24.png" />
+    <None Remove="Images\usersecond32.png" />
+    <None Remove="Images\xamarin_logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\aboutmission.jpg" />
+    <EmbeddedResource Include="Images\aboutplan.jpg" />
+    <EmbeddedResource Include="Images\Aboutuspagerafiki.png" />
+    <EmbeddedResource Include="Images\aboutvision.jpg" />
+    <EmbeddedResource Include="Images\avatarprofilPro.png" />
+    <EmbeddedResource Include="Images\cergiLogo.png" />
+    <EmbeddedResource Include="Images\Companyrafiki.png" />
+    <EmbeddedResource Include="Images\courthouse32.png" />
+    <EmbeddedResource Include="Images\courthouse64.png" />
+    <EmbeddedResource Include="Images\email_open_48px.png" />
+    <EmbeddedResource Include="Images\Emptyamico.png" />
+    <EmbeddedResource Include="Images\Financeamico.png" />
+    <EmbeddedResource Include="Images\Formspana.png" />
+    <EmbeddedResource Include="Images\FriendshipDaybro.png" />
+    <EmbeddedResource Include="Images\Groupvideoamico.png" />
+    <EmbeddedResource Include="Images\Groupvideopana.png" />
+    <EmbeddedResource Include="Images\handslogo.png" />
+    <EmbeddedResource Include="Images\icons8addlist30.png" />
+    <EmbeddedResource Include="Images\icons8addlist60.png" />
+    <EmbeddedResource Include="Images\icons8addlist90.png" />
+    <EmbeddedResource Include="Images\icons8ajouter24violet.png" />
+    <EmbeddedResource Include="Images\icons8ajouter48violet.png" />
+    <EmbeddedResource Include="Images\icons8ajouter96violet.png" />
+    <EmbeddedResource Include="Images\icons8ajouterappareilphoto48.png" />
+    <EmbeddedResource Include="Images\icons8appelezunhomme24violet.png" />
+    <EmbeddedResource Include="Images\icons8appelezunhomme30violet.png" />
+    <EmbeddedResource Include="Images\icons8appelezunhomme48violet.png" />
+    <EmbeddedResource Include="Images\icons8appelezunhomme96violet.png" />
+    <EmbeddedResource Include="Images\icons8back24.png" />
+    <EmbeddedResource Include="Images\icons8back48.png" />
+    <EmbeddedResource Include="Images\icons8back96.png" />
+    <EmbeddedResource Include="Images\icons8bulletedlist24.png" />
+    <EmbeddedResource Include="Images\icons8bulletedlist48.png" />
+    <EmbeddedResource Include="Images\icons8bulletedlist96.png" />
+    <EmbeddedResource Include="Images\icons8callmale30.png" />
+    <EmbeddedResource Include="Images\icons8callmale60.png" />
+    <EmbeddedResource Include="Images\icons8callmale90.png" />
+    <EmbeddedResource Include="Images\icons8casecochervérifiée24violet.png" />
+    <EmbeddedResource Include="Images\icons8cocheztoutesles24violet.png" />
+    <EmbeddedResource Include="Images\icons8cocheztoutesles48violet.png" />
+    <EmbeddedResource Include="Images\icons8cocheztoutesles96violet.png" />
+    <EmbeddedResource Include="Images\icons8collapsearrow48.png" />
+    <EmbeddedResource Include="Images\icons8collapsearrow96.png" />
+    <EmbeddedResource Include="Images\icons8deletebin48.png" />
+    <EmbeddedResource Include="Images\icons8deletebin48red.png" />
+    <EmbeddedResource Include="Images\icons8deletebin96.png" />
+    <EmbeddedResource Include="Images\icons8deletebin96red.png" />
+    <EmbeddedResource Include="Images\icons8edit64.png" />
+    <EmbeddedResource Include="Images\icons8editmessage24.png" />
+    <EmbeddedResource Include="Images\icons8editmessage48.png" />
+    <EmbeddedResource Include="Images\icons8editmessage96.png" />
+    <EmbeddedResource Include="Images\icons8effacer24violet.png" />
+    <EmbeddedResource Include="Images\icons8effacer48violet.png" />
+    <EmbeddedResource Include="Images\icons8effacer96violet.png" />
+    <EmbeddedResource Include="Images\icons8exit49.png" />
+    <EmbeddedResource Include="Images\icons8exit98.png" />
+    <EmbeddedResource Include="Images\icons8expandarrow48.png" />
+    <EmbeddedResource Include="Images\icons8expandarrow96.png" />
+    <EmbeddedResource Include="Images\icons8export48.png" />
+    <EmbeddedResource Include="Images\icons8export96.png" />
+    <EmbeddedResource Include="Images\icons8genealogy32.png" />
+    <EmbeddedResource Include="Images\icons8genealogy32bounce.png" />
+    <EmbeddedResource Include="Images\icons8genealogy64.png" />
+    <EmbeddedResource Include="Images\icons8genealogy64bounce.png" />
+    <EmbeddedResource Include="Images\icons8genealogy96.png" />
+    <EmbeddedResource Include="Images\icons8genealogy96bounce.png" />
+    <EmbeddedResource Include="Images\icons8guardian24.png" />
+    <EmbeddedResource Include="Images\icons8guardian30bounce.png" />
+    <EmbeddedResource Include="Images\icons8guardian48.png" />
+    <EmbeddedResource Include="Images\icons8guardian60bounce.png" />
+    <EmbeddedResource Include="Images\icons8guardian90bounce.png" />
+    <EmbeddedResource Include="Images\icons8guardian96.png" />
+    <EmbeddedResource Include="Images\icons8house24.png" />
+    <EmbeddedResource Include="Images\icons8house48.png" />
+    <EmbeddedResource Include="Images\icons8house96.png" />
+    <EmbeddedResource Include="Images\icons8info30bounce.png" />
+    <EmbeddedResource Include="Images\icons8info60bounce.png" />
+    <EmbeddedResource Include="Images\icons8info90bounce.png" />
+    <EmbeddedResource Include="Images\icons8language24bounce.png" />
+    <EmbeddedResource Include="Images\icons8language48bounce.png" />
+    <EmbeddedResource Include="Images\icons8language96bounce.png" />
+    <EmbeddedResource Include="Images\icons8listview30bounce.png" />
+    <EmbeddedResource Include="Images\icons8listview60bounce.png" />
+    <EmbeddedResource Include="Images\icons8listview90bounce.png" />
+    <EmbeddedResource Include="Images\icons8menu24.png" />
+    <EmbeddedResource Include="Images\icons8menu48.png" />
+    <EmbeddedResource Include="Images\icons8menu96.png" />
+    <EmbeddedResource Include="Images\icons8menurounded24.png" />
+    <EmbeddedResource Include="Images\icons8menurounded48.png" />
+    <EmbeddedResource Include="Images\icons8menurounded96.png" />
+    <EmbeddedResource Include="Images\icons8modifier24violet.png" />
+    <EmbeddedResource Include="Images\icons8modifier30.png" />
+    <EmbeddedResource Include="Images\icons8modifier48violet.png" />
+    <EmbeddedResource Include="Images\icons8modifier60.png" />
+    <EmbeddedResource Include="Images\icons8modifier90.png" />
+    <EmbeddedResource Include="Images\icons8modifier96violet.png" />
+    <EmbeddedResource Include="Images\icons8multiplier30.png" />
+    <EmbeddedResource Include="Images\icons8multiplier60.png" />
+    <EmbeddedResource Include="Images\icons8multiplier90.png" />
+    <EmbeddedResource Include="Images\icons8multiply100.png" />
+    <EmbeddedResource Include="Images\icons8multiply24.png" />
+    <EmbeddedResource Include="Images\icons8multiply48.png" />
+    <EmbeddedResource Include="Images\icons8multiply50.png" />
+    <EmbeddedResource Include="Images\icons8multiply96.png" />
+    <EmbeddedResource Include="Images\icons8museum24.png" />
+    <EmbeddedResource Include="Images\icons8museum30bounce.png" />
+    <EmbeddedResource Include="Images\icons8museum48.png" />
+    <EmbeddedResource Include="Images\icons8museum60bounce.png" />
+    <EmbeddedResource Include="Images\icons8museum90bounce.png" />
+    <EmbeddedResource Include="Images\icons8museum96.png" />
+    <EmbeddedResource Include="Images\icons8notification24.png" />
+    <EmbeddedResource Include="Images\icons8notification24bounce.png" />
+    <EmbeddedResource Include="Images\icons8notification48.png" />
+    <EmbeddedResource Include="Images\icons8notification48bounce.png" />
+    <EmbeddedResource Include="Images\icons8notification96.png" />
+    <EmbeddedResource Include="Images\icons8notification96bounce.png" />
+    <EmbeddedResource Include="Images\icons8nouveaumessage24violet.png" />
+    <EmbeddedResource Include="Images\icons8nouveaumessage48violet.png" />
+    <EmbeddedResource Include="Images\icons8nouveaumessage96violet.png" />
+    <EmbeddedResource Include="Images\icons8plusBleu.png" />
+    <EmbeddedResource Include="Images\icons8plusmath24.png" />
+    <EmbeddedResource Include="Images\icons8plusmath48.png" />
+    <EmbeddedResource Include="Images\icons8plusmath60.png" />
+    <EmbeddedResource Include="Images\icons8plusmath96.png" />
+    <EmbeddedResource Include="Images\icons8plusViolet.png" />
+    <EmbeddedResource Include="Images\icons8search24.png" />
+    <EmbeddedResource Include="Images\icons8search48.png" />
+    <EmbeddedResource Include="Images\icons8search96.png" />
+    <EmbeddedResource Include="Images\icons8settings24.png" />
+    <EmbeddedResource Include="Images\icons8settings48.png" />
+    <EmbeddedResource Include="Images\icons8settings96.png" />
+    <EmbeddedResource Include="Images\icons8supprimerlacorbeille24violet.png" />
+    <EmbeddedResource Include="Images\icons8supprimerlacorbeille48violet.png" />
+    <EmbeddedResource Include="Images\icons8supprimerlacorbeille96violet.png" />
+    <EmbeddedResource Include="Images\icons8utilisateur48.png" />
+    <EmbeddedResource Include="Images\icons8utilisateur96.png" />
+    <EmbeddedResource Include="Images\icons8videocall24.png" />
+    <EmbeddedResource Include="Images\icons8videocall48.png" />
+    <EmbeddedResource Include="Images\icons8videocall96.png" />
+    <EmbeddedResource Include="Images\icons8whatsapp24.png" />
+    <EmbeddedResource Include="Images\icons8whatsapp48.png" />
+    <EmbeddedResource Include="Images\icons8whatsapp96.png" />
+    <EmbeddedResource Include="Images\icons8wifioff48.png" />
+    <EmbeddedResource Include="Images\icons8wifioff96.png" />
+    <EmbeddedResource Include="Images\icons8world30bounce.png" />
+    <EmbeddedResource Include="Images\icons8world60bounce.png" />
+    <EmbeddedResource Include="Images\icons8world90bounce.png" />
+    <EmbeddedResource Include="Images\loginbackground1.png" />
+    <EmbeddedResource Include="Images\Mailamico.png" />
+    <EmbeddedResource Include="Images\Meetingamico.png" />
+    <EmbeddedResource Include="Images\Mentionamico.png" />
+    <EmbeddedResource Include="Images\Mobilelogincuate.png" />
+    <EmbeddedResource Include="Images\Pushnotificationspana.png" />
+    <EmbeddedResource Include="Images\Searchrafiki.png" />
+    <EmbeddedResource Include="Images\usersecond.png" />
+    <EmbeddedResource Include="Images\usersecond16.png" />
+    <EmbeddedResource Include="Images\usersecond24.png" />
+    <EmbeddedResource Include="Images\usersecond32.png" />
+    <EmbeddedResource Include="Images\xamarin_logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
+    <PackageReference Include="AiForms.SettingsView" Version="1.3.21" />
+    <PackageReference Include="Forms.Controls.FlexButton" Version="0.13.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="MonkeyCache.FileStore" Version="1.5.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
+    <PackageReference Include="System.Text.Json" Version="6.0.0-preview.3.21201.4" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0-pre2" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
+    <PackageReference Include="Xamarin.Forms.OpenWhatsApp" Version="1.0.1" />  
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />  
+    <PackageReference Include="Xamarin.Forms.Skeleton" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\LaboCode.xaml.cs">
+      <DependentUpon>LaboCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MiseajourVRPPage.xaml.cs">
+      <DependentUpon>MiseajourVRPPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Controls\ExpandParagraphControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AjoutEtsBancairePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AjoutOrganigrammePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AjoutPaysPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AjoutTypeRelationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ConferencesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ConversationUserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DetailEtsBancairePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DetailOrganigrammePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DetailsPaysNationalPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DetailTypeRelationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DetailVRPPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EmailVerificationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\InscriptionVRPpage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ListeEtsBancaireVRPpage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ListeOrganigrammeVRPpage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ListePaysVRPPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ListeTyperelationVRP.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ListeUserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ListeVRPpage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MessageriePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MiseajourVRPPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ModifierProfilUserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MotDePasseOubliePagePrincipam.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MotDePasseOublieUpdate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NavBarAppliVRP.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NotificationVRPpage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LaboCode.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OnBoardingPageVrp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PageDesParametres.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PoPUpProfilSelecteur.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProfilUserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RecherchePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RelationVRPPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Template\ChoixUserListConversation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Template\ConversationDroiteMessageItemTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Template\ConversationGaucheMessageItemTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NouvelleConversationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TESTEUR.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:VRPApplicationCERG.Helpers.Converters" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:control="clr-namespace:VRPApplicationCERG.Controls" 
+             xmlns:behaviour="clr-namespace:VRPApplicationCERG.Helpers.Behaviours"
+             BackgroundColor="{StaticResource FondLogin}"
+             Shell.ForegroundColor="{StaticResource couleurnoir}"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.BackgroundColor="{StaticResource FondLogin}"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False"
+             Shell.NavBarHasShadow="False"
+             x:Class="VRPApplicationCERG.Views.MotDePasseOublieUpdate">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                   Spacing="20"
+                   Padding="20,20,20,20"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="StartAndExpand">
+
+            <!-- Entete de page -->
+            <StackLayout VerticalOptions="StartAndExpand"
+                       Spacing="10"
+                       HorizontalOptions="FillAndExpand">
+
+                <!-- Texte descriptif -->
+                <Label Text="Nouveau mot de passe"
+                       MaxLines="1"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Start"
+                       FontSize="25"
+                       LineBreakMode="WordWrap"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource couleurchampsdesaisieBleu}"/>
+
+                <Label LineBreakMode="WordWrap"
+                           FontSize="13"
+                           TextColor="{StaticResource couleurnoir}"
+                           HorizontalOptions="StartAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Votre nouveau mot de passe doit etre different ou  &#10;"/>
+                            <Span Text="comporter des caracteres differents de votre ancien mot de passe. &#10;"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </StackLayout>
+
+            <!--CHamps nom utilisateur-->
+            <StackLayout Orientation="Vertical"
+                  Spacing="5"
+                  HorizontalOptions="FillAndExpand">
+
+
+                <!-- new Pasword-->
+                <Label Text="Mot de passe"
+                     Margin="5,0,0,0"
+                     Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                       Style="{StaticResource PancakeChampsaisiepersonnaliséLogin}">
+
+                    <control:EntryRenderers Keyboard="Text"
+                             Placeholder="Nouveau mot de passe..."
+                             Text="{Binding MOTDEPASSE_USER_VRP.Value}"
+                             Style="{StaticResource ChampsSaisieLogin}">
+                        <control:EntryRenderers.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding MOTDEPASSE_USER_VRP.IsValid}"/>
+                        </control:EntryRenderers.Behaviors>
+                    </control:EntryRenderers>
+
+                </yummy:PancakeView>
+
+                <Label Text="{Binding MOTDEPASSE_USER_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding MOTDEPASSE_USER_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource ErrorTextStyle}"/>
+
+                <!--Confirm new Pasword-->
+                <Label Text="Confirmer mot de passe"
+                     Margin="5,0,0,0"
+                     Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                       Style="{StaticResource PancakeChampsaisiepersonnaliséLogin}">
+
+                    <control:EntryRenderers Keyboard="Text"
+                             Placeholder="Nouveau mot de passe..."
+                             Text="{Binding MOTDEPASSE_USER_VRP.Value}"
+                             Style="{StaticResource ChampsSaisieLogin}">
+                        <control:EntryRenderers.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding MOTDEPASSE_USER_VRP.IsValid}"/>
+                        </control:EntryRenderers.Behaviors>
+                    </control:EntryRenderers>
+
+                </yummy:PancakeView>
+
+                <Label Text="{Binding MOTDEPASSE_USER_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding MOTDEPASSE_USER_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource ErrorTextStyle}"/>
+
+                <!-- bouton de connexion -->
+                <Button VerticalOptions="End" 
+                    Text="Réinitialiser"
+                    CornerRadius="12"
+                    HorizontalOptions="FillAndExpand"
+                    Visual="Material"
+                    HeightRequest="50"
+                    BackgroundColor="{StaticResource VioletbuttonSoft}"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource Primary}"
+                    Clicked="Button_Clicked"
+                    Command="{Binding LoginCommand}"/>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

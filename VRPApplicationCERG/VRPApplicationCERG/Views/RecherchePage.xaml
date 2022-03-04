@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:VRPApplicationCERG.Behaviors"
+             xmlns:Controls="clr-namespace:VRPApplicationCERG.Controls"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             xmlns:local="clr-namespace:VRPApplicationCERG.ViewModels.JOINTABLES_VIEWMODEL" 
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters" 
+             xmlns:local1="clr-namespace:VRPApplicationCERG.Views"
+             Shell.NavBarIsVisible="True"
+             Shell.TabBarIsVisible="True"
+             Shell.NavBarHasShadow="False"
+             Title="{Binding Title}"
+             x:Class="VRPApplicationCERG.Views.RecherchePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <pathimage:ConvertisseurImage x:Key="byteToImageSource" />
+
+            <!--  UTILE POUR LA LISTE DES RELATIONS DU VRP -->
+            <DataTemplate x:Key="CollectionVRP">
+
+                <Controls:MaterialFrame
+                    Style="{StaticResource FrameListApplicationConteneur}"
+                    Elevation="0"
+                    HorizontalOptions="FillAndExpand">
+                    <Grid Padding="2,2,2,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <Image
+                           x:Name="imageProfil"
+                           Style="{StaticResource ImageListePrincipaleApplication}"
+                           Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8utilisateur96.png}"
+                           Margin="5,0,5,0"
+                           VerticalOptions="StartAndExpand"
+                           HorizontalOptions="CenterAndExpand"/>
+
+
+                        <StackLayout Grid.Row="0"
+                          Grid.Column="1"
+                          Spacing="0"
+                          BackgroundColor="White"
+                          Orientation="Vertical"
+                          VerticalOptions="Center"
+                          HorizontalOptions="FillAndExpand">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="22" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Spacing="5"
+                                     Grid.Row="1"
+                                     Grid.RowSpan="3"
+                                     Orientation="Vertical">
+
+                                    <Label Text="{Binding LIBELLE}"
+                                         Style="{StaticResource TitrelisteApplicationItem}">
+                                    </Label>
+
+                                    <Label
+                                       Text="{Binding LIBELLE_RELATION}"
+                                       Style="{StaticResource Descriptionlabelbold}"/>
+
+                                </StackLayout>
+
+                                <BoxView Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="End"
+                                    Style="{StaticResource Boxview}"/>
+
+                            </Grid>
+                        </StackLayout>
+
+                    </Grid>
+                </Controls:MaterialFrame>
+
+
+                <!--</Frame>-->
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+
+        <StackLayout Orientation="Horizontal"
+                     Margin="0,0,10,0"
+                     Padding="{OnPlatform iOS='0,0,5,0', Android='0,0,10,0', Default=0}"
+                     HorizontalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Vertical" 
+                     VerticalOptions="CenterAndExpand"
+                     Spacing="5"
+                     HorizontalOptions="StartAndExpand">
+
+                <Label Text="Recherche avancée"
+                   Style="{StaticResource TitreListeApplicationNav}"
+                   LineBreakMode="TailTruncation"/>
+            </StackLayout>
+
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        
+        <StackLayout Orientation="Vertical"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Spacing="0">
+
+            <Label Text="Aller plus vite..."
+                 VerticalOptions="Start"
+                 Margin="10,10"
+                 Style="{StaticResource GrosTitreListeApplication}"
+                 HorizontalOptions="StartAndExpand"/>
+
+            <StackLayout Orientation="Vertical"
+                 Margin="15,0,15,10"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Spacing="10">
+
+                <!--premier picker pour la liste des pays-->
+
+                <Controls:MaterialFrame 
+                              Style="{StaticResource FrameChampsaisiepersonnalisé}">
+
+                    <Controls:CustomPicker
+                        ItemsSource="{Binding PaysList}"
+                        ItemDisplayBinding="{Binding PAYS_NOM}"
+                        x:Name="Pays"
+                        Image="icons8expandarrow48"
+                        SelectedIndex="{Binding SelectedPaysIndex, Mode=TwoWay}"
+                        SelectedItem="{Binding SelectedPaysItem, Mode=TwoWay}"
+                        Title="Selectionner un pays..."
+                        TitleColor="Gray"
+                        Style="{StaticResource ChampsSelection}">
+                        
+                    </Controls:CustomPicker>
+
+                </Controls:MaterialFrame>
+
+
+                <Controls:MaterialFrame 
+                           Style="{StaticResource FrameChampsaisiepersonnalisé}">
+
+                    <Controls:EntryRendererPickerProfil 
+                       ItemsSource="{Binding BanquesList}"
+                       ItemDisplayBinding="{Binding Banque_nom}"
+                       x:Name="Banques"
+                       SelectedIndex="{Binding SelectedBanqueIndex, Mode=TwoWay}"
+                       SelectedItem="{Binding SelectedBanqueItem, Mode=TwoWay}"
+                       Title="Selectionner la banque..."
+                       TitleColor="Gray"
+                       Style="{StaticResource ChampsSelection}">
+                           
+                    </Controls:EntryRendererPickerProfil>
+
+                    </Controls:MaterialFrame>
+
+
+                <Controls:MaterialFrame 
+                           Style="{StaticResource FrameChampsaisiepersonnalisé}">
+
+                    <Controls:EntryRendererPickerProfil 
+                            ItemsSource="{Binding VrpList}"
+                            ItemDisplayBinding="{Binding NOM_VRP}"
+                            x:Name="Vrp"
+                            SelectedIndex="{Binding SelectedVrpIndex, Mode=TwoWay}"
+                            SelectedItem="{Binding SelectedVrpItem, Mode=TwoWay}"
+                            Title="Selectionner le VRP..."
+                            TitleColor="Gray"
+                            Style="{StaticResource ChampsSelection}">
+                       
+                    </Controls:EntryRendererPickerProfil>
+
+                </Controls:MaterialFrame>
+
+            </StackLayout>
+
+            <!--Stacklayout contenant la liste-->
+            <StackLayout 
+                 Orientation="Vertical"
+                 Padding="3,5,3,10"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand">
+
+                <CollectionView x:Name="ListeVRP"
+                         ItemsSource="{Binding VRPRelationList}"
+                         Style="{StaticResource CollectionviewListeStyle}"
+                         SelectionMode="None"
+                         ItemTemplate="{StaticResource CollectionVRP}">
+
+                        <CollectionView.EmptyView>
+
+                        <StackLayout Orientation="Vertical"
+                                     Padding="15,0,15,0"
+                                     BackgroundColor="{StaticResource Primary}"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand"
+                                     Spacing="0">
+
+                            <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="CenterAndExpand"
+                                     Spacing="10">
+
+                                <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.Searchrafiki.png}"
+                                        HeightRequest="150"
+                                        WidthRequest="150"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Aspect="AspectFit"/>
+
+                                <Label Text="Cette Liste est vide."
+                                        Style="{StaticResource TitreCrouselApplication}"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center" />
+
+                                <Label Text="Aucun élément n'a été trouvé dans cette liste. Il sagit peut etre d'une erreur réseaux. Vérifiez l'état de votre connexion internet."
+                                        HorizontalOptions="CenterAndExpand"
+                                        Style="{StaticResource DescriptionlabelsansboldCarousel}"/>
+
+
+                            </StackLayout>
+
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    </CollectionView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

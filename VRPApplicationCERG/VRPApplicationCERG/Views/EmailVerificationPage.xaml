@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:VRPApplicationCERG.Helpers.Converters"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:control="clr-namespace:VRPApplicationCERG.Controls" 
+             xmlns:behaviour="clr-namespace:VRPApplicationCERG.Helpers.Behaviours" 
+             BackgroundColor="{StaticResource FondLogin}"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters" 
+             Shell.ForegroundColor="{StaticResource couleurnoir}"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.BackgroundColor="{StaticResource FondLogin}"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False"
+             Shell.NavBarHasShadow="False"
+             x:Class="VRPApplicationCERG.Views.EmailVerificationPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                   Spacing="25"
+                   Padding="20,20,20,20"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Vertical"
+                 Padding="0,10,0,10"
+                 Spacing="10"
+                 VerticalOptions="CenterAndExpand"
+                  HorizontalOptions="FillAndExpand">
+
+                <!--3. Image-->
+                <Frame
+             VerticalOptions="StartAndExpand"
+             Padding="20"
+             CornerRadius="15"
+             HorizontalOptions="CenterAndExpand"
+             HeightRequest="100"
+             WidthRequest="100"
+             BackgroundColor="#10637DF3"
+             HasShadow="false">
+
+                    <Image
+                 Aspect="AspectFit"
+                 HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="CenterAndExpand">
+                        <Image.Source>
+                            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                            Color="{StaticResource VioletbuttonSoft}"
+                            Size="80"
+                            Glyph="&#xf658;"/>
+                        </Image.Source>
+                    </Image>            
+
+                </Frame>
+
+                <!-- Entete de page -->
+            <StackLayout Spacing="10"
+                       Margin="0,10,0,0"
+                       HorizontalOptions="FillAndExpand">
+
+                <!-- Texte descriptif -->
+                <Label Text="Vérifier vos mails"
+                       MaxLines="1"
+                       HorizontalOptions="CenterAndExpand"
+                       FontSize="25"
+                       LineBreakMode="WordWrap"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource couleurchampsdesaisieBleu}"/>
+
+                <Label LineBreakMode="WordWrap"
+                           FontSize="13"
+                       HorizontalTextAlignment="Center"
+                           TextColor="{StaticResource couleurnoir}"
+                           HorizontalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Nous avons envoyé un code de vérification et &#10;"/>
+                            <Span Text="des instructions dans votre boite mail.  &#10;"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+
+            </StackLayout>
+
+            <!--CHamps nom utilisateur-->
+            <StackLayout Orientation="Vertical"
+                  Spacing="5"
+                  HorizontalOptions="FillAndExpand">
+
+                <Label Text="Code de vérification"
+                       HorizontalOptions="Center"
+                     Margin="5,0,0,0"
+                     Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                <yummy:PancakeView HorizontalOptions="Center"
+                       Style="{StaticResource PancakeChampsaisiepersonnaliséLogin}">
+
+                    <control:EntryRenderers Keyboard="Text"
+                             Placeholder="Saisissez le code..."
+                             Text="{Binding E_MAIL_USER_VRP.Value}"
+                             Style="{StaticResource ChampsSaisieLogin}">
+                        <control:EntryRenderers.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding E_MAIL_USER_VRP.IsValid}"/>
+                        </control:EntryRenderers.Behaviors>
+                    </control:EntryRenderers>
+
+                </yummy:PancakeView>
+
+                <Label Text="{Binding E_MAIL_USER_VRP.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding E_MAIL_USER_VRP.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource ErrorTextStyle}"/>
+
+                <!-- bouton de connexion -->
+                <Button VerticalOptions="End" 
+                    Text="Vérifier le code"
+                    CornerRadius="12"
+                    HorizontalOptions="Center"
+                    Visual="Material"
+                    HeightRequest="50"
+                    BackgroundColor="{StaticResource VioletbuttonSoft}"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource Primary}"
+                    Clicked="Button_Clicked"
+                    Command="{Binding LoginCommand}"/>
+
+            </StackLayout>
+        </StackLayout>
+
+
+        <!-- Texte descriptif -->
+            <Label LineBreakMode="WordWrap"
+                   FontSize="12"
+                   VerticalOptions="EndAndExpand"
+                   LineHeight="1.5"
+                   TextColor="{StaticResource couleurnoir}"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Vous n'avez pas reçu de mail ?&#160; Vérifier vos spams &#10;"/>
+                        <Span Text="ou&#160;"/>
+                        <Span Text="&#160;essayez une autre adresse email"
+                              FontAttributes="Bold"
+                              TextColor="{StaticResource VioletbuttonSoft}"
+                              FontSize="13">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding ForgetPasswordCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

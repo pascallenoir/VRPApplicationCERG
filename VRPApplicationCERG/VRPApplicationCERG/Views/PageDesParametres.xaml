@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sv="clr-namespace:AiForms.Renderers;assembly=SettingsView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" 
+             Title="{Binding Title}"
+             Shell.TabBarIsVisible="False"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters"
+             x:Class="VRPApplicationCERG.Views.PageDesParametres">
+
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     Margin="0,0,10,0"
+                     Padding="{OnPlatform iOS='0,0,5,0', Android='0,0,10,0', Default=0}"
+                     HorizontalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Vertical" 
+                     VerticalOptions="CenterAndExpand"
+                     Spacing="5"
+                     HorizontalOptions="StartAndExpand">
+
+                <Label Text="{Binding Title}"
+                   Style="{StaticResource TitreListeApplicationNav}"
+                   LineBreakMode="TailTruncation"/>
+            </StackLayout>
+
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+
+        <sv:SettingsView HasUnevenRows="True">
+
+
+            <sv:Section Title="Profil utilisateur">
+
+                <sv:CommandCell IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.usersecond.png}" 
+                    IconSize="50,50" 
+                    IconRadius="30"
+                    Title="Nom utilisateur" Description="hoge@fuga.com"
+                    Command="{Binding ToProfileCommand}" CommandParameter="{Binding Parameter}"
+                    KeepSelectedUntilBack="true"/>
+                
+            </sv:Section>
+
+            <sv:Section Title="Paramètres généraux">
+
+                <!--Notifications-->
+                <sv:SwitchCell  IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8notification48bounce.png}" 
+                   IconSize="24,24"
+                   IconRadius="0"
+                   Title="Notifications" On="{Binding Notifications}" 
+                   Description="Autoriser l'application à oui ou non, vous envoyer des alertes concernant les mises à jours et autres évenements"
+                   DescriptionColor="Gray"/>
+
+                <!--Choix de la langue-->
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="{StaticResource Primary}"
+                                 Padding="10,8,0,8"
+                                 HorizontalOptions="FillAndExpand"
+                                 HeightRequest="40">
+
+                        <StackLayout Orientation="Horizontal"
+                                HorizontalOptions="StartAndExpand">
+
+                            <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.icons8language24bounce.png}"
+                                   HeightRequest="24"
+                                   WidthRequest="24"
+                                   BackgroundColor="Transparent"
+                                   VerticalOptions="Center"/>
+
+                            <Label Text="Langue"
+                                    TextColor="{StaticResource couleurnoir}"
+                                    Padding="5,0,0,0"
+                                    HorizontalOptions="StartAndExpand"
+                                    VerticalOptions="Center"/>
+
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal"
+                                  Padding="0,0,8,0"
+                                  HorizontalOptions="EndAndExpand">
+
+                                <!--<custom:EntryRendererPickerMenu
+                            ItemsSource="{Binding Languages}"
+                            ItemDisplayBinding="{Binding DisplayName}"
+                            x:Name="Pickerlanguage" 
+                            FontSize="12"
+                            VerticalOptions="Center"
+                            Title="{helpers:Translate Choisir}"
+                            SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                            TitleColor="#bababa"
+                            HorizontalOptions="EndAndExpand"/>-->
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </ViewCell>
+
+                <sv:CommandCell Title="Mettre a jour la langue"
+                          TitleColor="{StaticResource violetclaire}"
+                          Command="{Binding ChangeLangugeCommand}" 
+                          KeepSelectedUntilBack="true"/>
+
+            </sv:Section>
+
+            <!--Parametre secondaire de l'application-->
+                <sv:Section Title="Modification de contenu">
+
+
+                <sv:CommandCell IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8museum30bounce.png}" 
+                                IconSize="24,24"
+                                IconRadius="0"
+                     Title="Liste des établissements banquaire" 
+                     Command="{Binding AllerAlisteBanque}" 
+                     KeepSelectedUntilBack="true"
+                     Description="Ajouter, supprimer ou modifier un élément dans la liste des banques" 
+                     DescriptionColor="Gray"/>
+
+                <sv:CommandCell IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8guardian30bounce.png}" 
+                                IconSize="24,24"
+                                IconRadius="0"
+                      Title="Liste des relations clients" 
+                      Command="{Binding AllerAlisteRelation}" 
+                      KeepSelectedUntilBack="true"
+                      Description="Ajouter, supprimer ou modifier un élément dans la liste des relations" 
+                      DescriptionColor="Gray"/>
+
+                <sv:CommandCell  IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8world30bounce.png}" 
+                                 IconSize="24,24"
+                                 IconRadius="0"
+                    Title="Liste des pays" 
+                   Command="{Binding AllerAlistePays}" 
+                   KeepSelectedUntilBack="true"
+                   Description="Ajouter, supprimer ou modifier un élément dans la liste des pays" 
+                   DescriptionColor="Gray"/>
+
+                <sv:CommandCell IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8genealogy32bounce.png}" 
+                                IconSize="24,24"
+                                IconRadius="0"
+                   Title="Organigramme" 
+                   Command="{Binding AllerAOrganigramme}" 
+                   KeepSelectedUntilBack="true"
+                   Description="Ajouter, supprimer ou modifier un élément dans l'organigramme bancaire" 
+                   DescriptionColor="Gray"/>
+
+                 </sv:Section>
+                
+
+            <!--Parametre niveau trois de l'application-->
+                <sv:Section Title="A propos">
+
+                    <sv:LabelCell x:Name="VersionNumber"
+                              IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8listview30bounce.png}" 
+                                  IconSize="24,24"
+                                  IconRadius="0"
+                              Title="Numero de version"
+                              ValueText="{Binding NumeroVersion}" />
+
+
+                    <sv:LabelCell x:Name="BuildNumber"
+                             IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8listview30bounce.png}" 
+                                  IconSize="24,24"
+                                  IconRadius="0"
+                             Title="Numero de build"
+                              ValueText="{Binding NumeroBuild}" />
+
+
+                    <sv:CommandCell Title="A propos de VRP"
+                                IconSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8info30bounce.png}" 
+                                    IconSize="24,24"
+                                    IconRadius="0"
+                                Command="{Binding AllerAEcranApropros}" 
+                                KeepSelectedUntilBack="true"/>
+
+                </sv:Section>
+
+            </sv:SettingsView>
+
+        </ContentPage.Content>
+
+</ContentPage>

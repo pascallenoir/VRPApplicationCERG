@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:Controls="clr-namespace:VRPApplicationCERG.Controls" 
+             xmlns:behaviors="clr-namespace:VRPApplicationCERG.Behaviors" 
+             xmlns:sv="clr-namespace:AiForms.Renderers;assembly=SettingsView"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters" 
+             xmlns:custom="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" 
+             xmlns:local="clr-namespace:VRPApplicationCERG.ViewModels.BANQUE_VRP_VIEWMODEL"
+             x:Class="VRPApplicationCERG.Views.Template.NouvelleConversationPage">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <pathimage:ConvertisseurImage x:Key="byteToImageSource" />
+
+            <!--  UTILE POUR LA LISTE DES USER -->
+            <DataTemplate x:Key="CollectionVRPListUser">
+
+                <Controls:MaterialFrame
+                           Style="{StaticResource FrameListApplicationConteneurPetit}"
+                           Elevation="0"
+                           HasShadow="False"
+                           HorizontalOptions="FillAndExpand">
+
+                    <Grid Padding="2,2,2,2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                         <!--3. Photo de profil /-->
+                        <Frame
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Padding="0"
+                           CornerRadius="22.5"
+                           Margin="2,2,2,2"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="StartAndExpand"
+                           HeightRequest="45"
+                           WidthRequest="45"
+                           BackgroundColor="{StaticResource couleurGrisFondClair}"
+                           HasShadow="false">
+
+                           <custom:CircleImage
+                            Aspect="AspectFit"
+                            Margin="0,10,10,10"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource ImageListeApplication}"
+                            Source="{pathimage:ImageResource VRPApplicationCERG.Images.avatarprofilPro.png}"/>
+
+                        </Frame>
+
+
+                        <StackLayout Grid.Row="0"
+                                Grid.Column="1"
+                                Spacing="0"
+                                Orientation="Vertical"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand">
+
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Spacing="5"
+                                         Grid.Row="0"
+                                        Grid.Column="0"
+                                         VerticalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                    <Label Text="{Binding USERNAME_USER_VRP}"
+                                            Style="{StaticResource TitrelisteApplicationItem}">
+                                    </Label>
+
+                                </StackLayout>
+                              
+                            </Grid>
+                        </StackLayout>
+
+                    </Grid>
+                </Controls:MaterialFrame>
+                <!--</Frame>-->
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <!--Entete-->
+            <StackLayout Orientation="Horizontal"
+               HorizontalOptions="FillAndExpand"
+               Padding="10,10"
+               BackgroundColor="{StaticResource couleurGrisBackgroundHeaD}"
+               VerticalOptions="Start"
+               Spacing="10">
+
+                <StackLayout>
+                    <!--bouton fermer-->
+                    <ImageButton Style="{StaticResource ImageBoutonAjoutEtDetail}"
+                      HorizontalOptions="StartAndExpand"
+                      VerticalOptions="CenterAndExpand"
+                      Command="{Binding CancelCommand}"/>
+
+                    <!--titre -->
+                    <Label Text="Nouveau message"
+                   LineBreakMode="TailTruncation"
+                   Style="{StaticResource TitreApplication}"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <BoxView 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="End"
+                    Style="{StaticResource BoxviewHead}"/>
+            
+            <StackLayout Padding="10,10">
+                <!--barre de recherche-->
+                <Controls:MaterialFrame Margin="10,0,15,10" 
+                            Style="{StaticResource FrameChampsaisiepersonnaliséSearch}">
+
+                    <Controls:SearchBarRendererControl x:Name="searchBar"
+                                Placeholder="Rechercher une personne"
+                                Text="{Binding SearchText}"
+                                Style="{StaticResource ChampsDeRecherche}">
+                        <Controls:SearchBarRendererControl.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged" 
+                               Command="{Binding SearchCommand}"/>
+                        </Controls:SearchBarRendererControl.Behaviors>
+                    </Controls:SearchBarRendererControl>
+
+                </Controls:MaterialFrame>
+
+                <!--Infos utilisateur liste-->
+                <sv:SettingsView HasUnevenRows="True"
+                  Margin="10,0,10,0"
+                  HeaderPadding="10,20,0,10"
+                  BackgroundColor="{StaticResource Primary}"
+                  HeaderBackgroundColor="{StaticResource Primary}"
+                  HeaderFontSize="11"
+                  HorizontalOptions="FillAndExpand">
+
+                    <sv:Section>
+
+                        <sv:CommandCell 
+                        Title="Réunion instantanée"/>
+
+                    </sv:Section>
+
+                    <sv:Section Title="Personnes">
+
+                        <ViewCell>
+                            <!--Stacklayout contenant la liste-->
+                            <StackLayout 
+                                Orientation="Vertical"
+                                Padding="3,5,3,10"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand">
+
+                                <RefreshView x:DataType="local:BanqueVrpViewModelListeRelationVrp" 
+                                    Command="{Binding LoadItemsCommand}" 
+                                    IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                                    <ListView x:Name="ListeVRP"
+                                        ItemsSource="{Binding VRPRelationList}"
+                                        Style="{StaticResource CollectionviewListeStyle}"
+                                        SeparatorVisibility="Default"
+                                        SeparatorColor="{StaticResource couleurGrayNuancee4 }"
+                                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                        ItemTemplate="{StaticResource CollectionVRPListUser}">
+                                    </ListView>
+                                </RefreshView>
+
+                            </StackLayout>
+                        </ViewCell>
+
+                    </sv:Section>
+                </sv:SettingsView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

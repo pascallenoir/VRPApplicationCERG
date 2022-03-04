@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:test="clr-namespace:VRPApplicationCERG.Behaviors" 
+             xmlns:local1="clr-namespace:VRPApplicationCERG.Controls"
+             x:Class="VRPApplicationCERG.Views.ConversationUserPage">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <test:BoolMemberTemplateSelector
+				x:Key="Selector"
+				MemberName="IsInbound">
+
+                <test:BoolMemberTemplateSelector.TrueDataTemplate>
+                    <DataTemplate>
+                        <Grid
+							ColumnSpacing="0"
+							RowSpacing="0"
+							VerticalOptions="StartAndExpand"
+							Margin="20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+									Width="Auto" />
+                                <ColumnDefinition
+									Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+									Height="*" />
+                                <RowDefinition
+									Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- LEFT TRIANGLE -->
+                            <Label
+								Grid.Row="1"
+								Grid.Column="1"
+								HorizontalTextAlignment="Start"
+								VerticalTextAlignment="Start"
+								TranslationX="10"
+								TranslationY="-1"
+                                FontFamily="{StaticResource FontAwesomeBrands}"
+								Text="&#xf0dd;"
+								TextColor="{DynamicResource violetclaireButton }"
+								Style="{StaticResource FontIconFill }"
+								FontSize="26" />
+
+                            <!-- BALLOON BACKGROUND -->
+                            <BoxView
+								Grid.Row="0"
+								Grid.Column="1"
+								BackgroundColor="{DynamicResource violetclaireButton }"
+								CornerRadius="4"
+								VerticalOptions="FillAndExpand" />
+
+                            <Label
+								Grid.Row="0"
+								Grid.Column="1"
+								Margin="10"
+								TextColor="{DynamicResource ChatLeftTextColor }"
+								FontSize="12"
+								Text="{Binding CORPSDUMESSAGE }"
+								VerticalOptions="EndAndExpand" />
+
+                            <!-- LEFT AVATAR -->
+                            <local1:CircleCachedImage
+								Grid.Row="1"
+								Grid.Column="0"
+								Source="{Binding FROM.PHOTO_USER_VRP }"
+								Style="{StaticResource AvatarXSmall }"
+								HorizontalOptions="Start"
+								TranslationY="10" />
+
+                            <!-- BY -->
+                            <Label
+								Grid.Row="1"
+								Grid.Column="1"
+								HorizontalOptions="Start"
+								VerticalOptions="CenterAndExpand"
+								TranslationX="10"
+								TranslationY="10"
+								FontSize="12"
+								TextColor="{ DynamicResource BaseTextColor }"
+								Text="{ Binding From.USERNAME_USER_VRP }" />
+
+                            <!-- WHEN -->
+                            <Label
+								Grid.Row="1"
+								Grid.Column="1"
+								TranslationY="10"
+								FontSize="12"
+								TextColor="{ DynamicResource BaseTextColor }"
+								HorizontalTextAlignment="End"
+								VerticalTextAlignment="Center"
+								Text="{Binding DATEDERECEPION }" />
+
+                        </Grid>
+                    </DataTemplate>
+                </test:BoolMemberTemplateSelector.TrueDataTemplate>
+
+                <test:BoolMemberTemplateSelector.FalseDataTemplate>
+                    <DataTemplate>
+                        <Grid
+							ColumnSpacing="0"
+							RowSpacing="0"
+							VerticalOptions="StartAndExpand"
+							Margin="20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+									Width="*" />
+                                <ColumnDefinition
+									Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+									Height="Auto" />
+                                <RowDefinition
+									Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!-- LEFT TRIANGLE -->
+                            <Label
+								Grid.Row="1"
+								Grid.Column="1"
+								HorizontalTextAlignment="Start"
+								VerticalTextAlignment="Start"
+								TranslationX="-26"
+								TranslationY="-1"
+                                FontFamily="{StaticResource FontAwesomeBrands}"
+								Text="&#xf0dd;"
+								TextColor="{ DynamicResource ChatRightBalloonBackgroundColor }"
+								Style="{StaticResource FontIcon}"
+								FontSize="26" />
+
+                            <!-- BALLOON BACKGROUND -->
+                            <BoxView
+								Grid.Row="0"
+								Grid.Column="0"
+								BackgroundColor="{DynamicResource ChatRightBalloonBackgroundColor}"
+								CornerRadius="4"
+								VerticalOptions="FillAndExpand" />
+
+                            <Label
+								Grid.Row="0"
+								Grid.Column="0"
+								Margin="10"
+								TextColor="{ DynamicResource ChatRightTextColor }"
+								FontSize="12"
+								Text="{Binding CORPSDUMESSAGE }"
+								VerticalOptions="EndAndExpand" />
+
+
+                            <!-- RIGHT AVATAR -->
+                            <local1:CircleCachedImage
+								Grid.Row="1"
+								Grid.Column="1"
+								Source="{Binding FROM.PHOTO_USER_VRP}"
+								Style="{StaticResource AvatarXSmall}"
+								BorderColor="{DynamicResource ChatRightBalloonBackgroundColor}"
+								HorizontalOptions="Start"
+								TranslationY="10" />
+
+                            <!-- WHEN -->
+                            <Label
+								Grid.Row="1"
+								Grid.Column="0"
+								HorizontalOptions="Start"
+								VerticalOptions="CenterAndExpand"
+								TranslationX="10"
+								TranslationY="10"
+								FontSize="12"
+								TextColor="{DynamicResource BaseTextColor}"
+								Text="{Binding DATEDERECEPION }" />
+
+                            <!-- BY -->
+                            <Label
+								Grid.Row="1"
+								Grid.Column="0"
+								TranslationX="-10"
+								TranslationY="10"
+								FontSize="12"
+								TextColor="{DynamicResource BaseTextColor}"
+								HorizontalTextAlignment="End"
+								VerticalTextAlignment="Center"
+								Text="{Binding From.USERNAME_USER_VRP}" />
+                        </Grid>
+                    </DataTemplate>
+                </test:BoolMemberTemplateSelector.FalseDataTemplate>
+
+            </test:BoolMemberTemplateSelector>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid
+		BackgroundColor="{DynamicResource MainWrapperBackgroundColor }"
+		Grid.Column="0"
+		RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+				Height="*" />
+                <RowDefinition
+				Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ListView
+			    BackgroundColor="{DynamicResource BasePageColor }"
+			    Grid.Row="0"
+			    CachingStrategy="RecycleElement"
+			    ItemsSource="{Binding MessageConversationList}"
+			    SeparatorVisibility="None"
+			    HasUnevenRows="true"
+			    ItemTemplate="{StaticResource Selector}"
+			    Style="{StaticResource ResponsiveLandscapeMarginStyle}" />
+
+            <!--- BUTTONS CONTAINER  -->
+            <Grid
+			Grid.Row="1"
+			Padding="10,0"
+			ColumnSpacing="5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+					Width="40" />
+                    <ColumnDefinition
+					Width="50*" />
+                    <ColumnDefinition
+					Width="40" />
+                </Grid.ColumnDefinitions>
+
+                <!--- PICTURE BUTTON  -->
+               
+
+                <!--- ENTRY  -->
+                <Entry
+				Grid.Column="0"
+                Grid.ColumnSpan="2"
+				Margin="0,10"
+				Placeholder="Entrer votre message..." />
+
+                <!--- SEND BUTTON  -->
+                <Label
+				Grid.Column="2"
+                Text="&#xf1d8;"
+				FontSize="24"
+				HorizontalOptions="Center"
+                FontFamily="{StaticResource FontAwesomeBrands}"
+				TextColor="{ DynamicResource AccentColor }"
+				Style="{ StaticResource ChatIconButtonSendStyle }" />
+
+                <!-- SEPARATOR  -->
+                <BoxView
+				Grid.Column="0"
+				Grid.ColumnSpan="3"
+				Margin="-10,0"
+				Style="{ StaticResource Horizontal1ptLineStyle }"
+				VerticalOptions="Start" />
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

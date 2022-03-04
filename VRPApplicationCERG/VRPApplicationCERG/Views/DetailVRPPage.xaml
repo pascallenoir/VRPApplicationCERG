@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:VRPApplicationCERG.ViewModels.BANQUE_VRP_VIEWMODEL"
+             xmlns:pathimage="clr-namespace:VRPApplicationCERG.Converters" 
+             xmlns:custom="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" 
+             xmlns:behaviors="clr-namespace:VRPApplicationCERG.Behaviors"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:Controls="clr-namespace:VRPApplicationCERG.Controls" 
+             ios:Page.UseSafeArea="true"
+             Title="{Binding Title}"
+             Shell.NavBarIsVisible="True"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarHasShadow="False"
+             x:Class="VRPApplicationCERG.Views.DetailVRPPage">
+
+    <!--  element resource utiles-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <!--  UTILE POUR LA LISTE DES ETS BANCAIRE -->
+            <DataTemplate x:Key="CollectionVRP">
+
+                <Controls:MaterialFrame
+                           Style="{StaticResource FrameListApplicationConteneurPetit}"
+                           Elevation="0"
+                           HorizontalOptions="FillAndExpand">
+                    <Grid Padding="2,2,2,2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Image Grid.Row="0"
+                           Grid.Column="0"
+                          x:Name="imageProfil"
+                          Style="{StaticResource ImageListeApplicationpetiteFrame}"
+                          Source="{pathimage:ImageResource VRPApplicationCERG.Images.courthouse64.png}"
+                          Margin="0,10,10,0"
+                          VerticalOptions="StartAndExpand"
+                                HorizontalOptions="CenterAndExpand"/>
+                        
+                        <StackLayout Grid.Row="0"
+                                Grid.Column="1"
+                                Spacing="0"
+                                Padding="0,0,0,2"
+                                BackgroundColor="White"
+                                Orientation="Vertical"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Spacing="5"
+                                         Grid.Row="1"
+                                         Grid.Column="0"
+                                         Orientation="Vertical">
+
+                                    <Label Text="{Binding BANQUE_NOM}"
+                                           Style="{StaticResource TitrelisteApplicationItem}">
+                                    </Label>
+
+                                </StackLayout>
+
+                                <BoxView Grid.Row="0"
+                                        Grid.Column="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        Style="{StaticResource Boxview}"/>
+
+                            </Grid>
+                        </StackLayout>
+
+                    </Grid>
+                </Controls:MaterialFrame>
+
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--2. fin de ligne -->
+
+    <!--barre de navigation personnalisée -->
+    <Shell.TitleView>
+
+        <StackLayout Orientation="Horizontal"
+                     Padding="{OnPlatform iOS='0,0,5,0', Android='0,0,10,0', Default=0}"
+                     HorizontalOptions="FillAndExpand">
+
+      
+                <Label Text="{Binding Title}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="CenterAndExpand"
+                   Style="{StaticResource TitreListeApplicationNav}"
+                   LineBreakMode="TailTruncation"/>
+
+        </StackLayout>
+    </Shell.TitleView>
+    <!--2. fin de ligne -->
+
+    <!--Contenu de la page -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0"
+                Orientation="Vertical"
+                Spacing="10"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+
+            <StackLayout 
+                     Orientation="Vertical"
+                     Spacing="10"
+                     Padding="0,20,0,0"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+
+                    <Controls:MaterialFrame 
+                               Padding="0"
+                               CornerRadius="50"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="StartAndExpand"
+                               BackgroundColor="Transparent"
+                               HasShadow="True">
+
+                        <custom:CircleImage
+                              Aspect="AspectFit"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="FillAndExpand"
+                              HeightRequest="100"
+                              WidthRequest="100"
+                              Source="{pathimage:ImageResource VRPApplicationCERG.Images.usersecond.png}"/>
+
+                    </Controls:MaterialFrame>
+
+                    <!--3. Phone & message buttons-->
+                
+                    <ScrollView 
+                    Orientation="Horizontal"
+                    Margin="10,20,10,10"
+                    Padding="0,5"
+                    HorizontalScrollBarVisibility="Never"
+                    HorizontalOptions="FillAndExpand">
+
+                        <StackLayout Spacing="5"
+                         Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="CenterAndExpand">
+
+                            <Button 
+                                Text="Appeler"
+                                ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8appelezunhomme48violet.png}"
+                                TextColor="{StaticResource couleurnoir}"
+                                FontSize="12"
+                                HeightRequest="50"
+                                Padding="10,5,10,5"
+                                Margin="5,0,0,0"
+                                CornerRadius="22"
+                                HorizontalOptions="Start"
+                                ContentLayout="Left, 20"
+                                BackgroundColor="{StaticResource violetclaireButton}"
+                                Command="{Binding AppelCommand}"/>
+
+
+                            <Button
+                                Text="Message"
+                                ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8nouveaumessage48violet.png}"
+                                TextColor="{StaticResource couleurnoir}"
+                                FontSize="12"
+                                HeightRequest="50"
+                                Padding="10,5,10,5"
+                                Margin="5,0,0,0"
+                                CornerRadius="22"
+                                HorizontalOptions="Start"
+                                ContentLayout="Left, 20"
+                                BackgroundColor="{StaticResource violetclaireButton}"
+                                Command="{Binding MessageCommand}"/>
+
+
+                            <Button
+                                Text="Modifier"
+                                ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8modifier48violet.png}"
+                                TextColor="{StaticResource couleurnoir}"
+                                FontSize="12"
+                                HeightRequest="50"
+                                Padding="10,5,10,5"
+                                Margin="5,0,0,0"
+                                CornerRadius="22"
+                                HorizontalOptions="Start"
+                                ContentLayout="Left, 20"
+                                BackgroundColor="{StaticResource violetclaireButton}"
+                                Command="{Binding EditCommand}"/>
+
+
+                            <Button
+                                Text="WhatsApp"
+                                ImageSource="{pathimage:ImageResource VRPApplicationCERG.Images.icons8whatsapp48.png}"
+                                TextColor="{StaticResource couleurnoir}"
+                                FontSize="12"
+                                HeightRequest="50"
+                                Padding="10,5,10,5"
+                                Margin="5,0,0,0"
+                                CornerRadius="22"
+                                HorizontalOptions="Start"
+                                ContentLayout="Left, 20"
+                                BackgroundColor="{StaticResource violetclaireButton}"
+                                Command="{Binding WhatsAppCommand}"/>
+
+
+                        </StackLayout>
+                    </ScrollView>
+                    <!--2. fin de ligne -->
+
+                        <Controls:XFTabControl x:Name="Tabcomponent" 
+                                VerticalOptions="FillAndExpand" 
+                                HeaderColor="{StaticResource Primary}" 
+                                SelectedIndex="{Binding Index}">
+                            <Controls:XFTabControl.XFTabPages>
+                                <Controls:XFTabPage>
+                                    <Controls:XFTabPage.Header>
+                                        <Controls:XFTabHeader      
+                                            BackgroundColor="{StaticResource Primary}"
+                                            HorizontalOptions="FillAndExpand">
+                                            
+                                                <Label Text="Profil"
+                                                    BackgroundColor="{StaticResource Primary}"
+                                                    VerticalTextAlignment="Center"
+                                                    TextColor="{StaticResource violetclaire}"
+                                                    HorizontalTextAlignment="Center">
+                                                </Label>
+                                        </Controls:XFTabHeader>
+                                    </Controls:XFTabPage.Header>
+                                    <Controls:XFTabPage.Content>
+
+                                    <!--Information sur le vrp-->
+                       <ScrollView HorizontalOptions="FillAndExpand"
+                             Padding="0,0,0,20"
+                             VerticalOptions="FillAndExpand">
+                           
+                                        <StackLayout 
+                                Orientation="Vertical"
+                                Spacing="10"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+
+                                            <ScrollView HorizontalOptions="FillAndExpand"
+                                     Padding="0,0,0,20"
+                                     VerticalOptions="FillAndExpand">
+
+                                                <!--4. Contact information-->
+
+                                                <Controls:MaterialFrame 
+                                        Padding="10,10"
+                                        Margin="13,13"
+                                        CornerRadius="8"
+                                        Elevation="6"
+                                        BackgroundColor="{StaticResource Primary}"
+                                        HasShadow="True">
+
+                                                    <StackLayout
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand"
+                                            BackgroundColor="{StaticResource Primary}"
+                                            Spacing="10">
+
+                                                        <Label HorizontalOptions="StartAndExpand"
+                                                Text="{Binding NOM_VRP}"
+                                                Style="{StaticResource TitreApplicationDetail}"
+                                                VerticalOptions="Start"/>
+
+
+                                                        <Label HorizontalOptions="StartAndExpand"
+                                                Text="{Binding PRENOM_VRP}"
+                                                Margin="0,-10,0,0"
+                                                Style="{StaticResource TitreApplicationDetailGray}"
+                                                VerticalOptions="Start"/>
+
+
+                                                        <StackLayout 
+                                                Orientation="Vertical" 
+                                                Spacing="10">
+
+                                                            <StackLayout 
+                                                    Spacing="5" 
+                                                    VerticalOptions="EndAndExpand">
+
+                                                                <Label
+                                                        Text="Code du VRP"
+                                                        Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                                                <Label
+                                                        Style="{StaticResource TextApplicationDetail}"
+                                                         Text="{Binding CODE_VRP}" />
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                        <BoxView HeightRequest=".5" BackgroundColor="#40110630" />
+
+
+                                           <Label  Style="{StaticResource TitreListeApplicationGrayDetailUppercase}"
+                                            Margin="0,10,0,0"
+                                            HorizontalOptions="End"
+                                            Text="CONTACT"/>
+
+                                                        <StackLayout 
+                                            Orientation="Vertical" 
+                                            Spacing="10">
+
+                                                            <StackLayout 
+                                                Spacing="5" 
+                                                VerticalOptions="EndAndExpand">
+
+                                                                <Label
+                                                Text="Adresse Email"
+                                                Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                                                <Label  Style="{StaticResource TextApplicationDetail}"
+                                               Text="{Binding E_MAIL_VRP}" />
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                        <BoxView HeightRequest=".5" BackgroundColor="#40110630" />
+
+                                                        <StackLayout 
+                                            Orientation="Horizontal" 
+                                            Spacing="20">
+
+                                                            <StackLayout 
+                                                Spacing="5" 
+                                                VerticalOptions="EndAndExpand">
+
+                                                                <Label
+                                                 Text="Telephone principal"
+                                                 Style="{StaticResource DescriptionlabelChmapsSaisie}" />
+
+                                                                <Label Style="{StaticResource TextApplicationDetail}"
+                                                    Text="{Binding TEL1_VRP}"/>
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                        <BoxView HeightRequest=".5" BackgroundColor="#40110630" />
+
+                                                        <StackLayout 
+                                            Orientation="Horizontal" 
+                                            Spacing="10">
+
+                                                            <StackLayout 
+                                                Spacing="5" 
+                                                VerticalOptions="EndAndExpand">
+
+                                                                <Label
+                                                Text="Telephone secondaire"
+                                                Style="{StaticResource DescriptionlabelChmapsSaisie}"/>
+
+                                                                <Label  Style="{StaticResource TextApplicationDetail}"
+                                                    Text="{Binding TEL2_VRP}"/>
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                        <BoxView HeightRequest=".5" BackgroundColor="#40110630" />
+
+                                                        <Label  Style="{StaticResource TitreListeApplicationGrayDetailUppercase}"
+                                            Margin="0,10,0,0"
+                                            HorizontalOptions="End"
+                                            Text="ADRESSE"/>
+
+                                                        <StackLayout 
+                                            Orientation="Horizontal" 
+                                            Spacing="10">
+
+                                                            <StackLayout 
+                                                Spacing="5" 
+                                                VerticalOptions="EndAndExpand">
+
+                                                                <Label
+                                                Text="Adresse principale"
+                                                Style="{StaticResource DescriptionlabelChmapsSaisie}"/>
+
+                                                                <Label  Style="{StaticResource TextApplicationDetail}"
+                                                    Text="{Binding ADR1_VRP}"/>
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                        <BoxView Style="{StaticResource Boxview}"/>
+
+                                                        <StackLayout 
+                                            Orientation="Horizontal" 
+                                            Spacing="10">
+
+                                                            <StackLayout 
+                                                Spacing="5" 
+                                                VerticalOptions="EndAndExpand">
+
+                                                                <Label
+                                               Text="Adresse secondaire"
+                                                Style="{StaticResource DescriptionlabelChmapsSaisie}"/>
+
+                                                                <Label Style="{StaticResource TextApplicationDetail}"
+                                                    Text="{Binding ADR2_VRP}"/>
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                    <Button TextColor="{StaticResource Primary}" 
+                                                BackgroundColor="{StaticResource violetclaire}" 
+                                                Text="Supprimer" 
+                                                Visual="Material"
+                                                Margin="0,20,0,10" 
+                                                Command="{Binding DeleteCommand}"
+                                                FontAttributes="Bold" 
+                                                FontSize="17" 
+                                                HeightRequest="45"/>
+
+                                                    </StackLayout>
+
+                                                </Controls:MaterialFrame>
+
+                                            </ScrollView>
+                                        </StackLayout>
+                                        <!--</Grid>-->
+                                    </ScrollView>
+                                    <!--2. fin de ligne -->
+                                </Controls:XFTabPage.Content>
+                                </Controls:XFTabPage>
+                                <Controls:XFTabPage>
+                                    <Controls:XFTabPage.Header>
+                                <Controls:XFTabHeader
+                                             BackgroundColor="{StaticResource Primary}"
+                                             HorizontalOptions="FillAndExpand">
+
+                                    <Label 
+                                        BackgroundColor="{StaticResource Primary}"
+                                        VerticalTextAlignment="Center"
+                                        TextColor="{StaticResource violetclaire}"
+                                        HorizontalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Banques"/>
+                                                <Span Text="("/>
+                                                <Span Text="{Binding Count}"
+                                                    FontAttributes="Bold"/>
+                                                <Span Text=")"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Controls:XFTabHeader>
+                                    </Controls:XFTabPage.Header>
+                                    <Controls:XFTabPage.Content>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+
+                                        <ScrollView HorizontalOptions="FillAndExpand"
+                                            Padding="0,0,0,20"
+                                            VerticalOptions="FillAndExpand">
+                                            
+                                            <StackLayout Grid.Row="0"
+                                                Orientation="Vertical"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand"
+                                                Spacing="0">
+
+                                            <StackLayout Orientation="Vertical"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="Start">
+
+                                                <!--barre de recherche-->
+                                                <Controls:MaterialFrame Margin="10,10,15,10" 
+                                                        Style="{StaticResource FrameChampsaisiepersonnaliséSearch}">
+
+                                                    <Controls:SearchBarRendererControl x:Name="searchBar"
+                                                            Placeholder="Rechercher une banque"
+                                                            Text="{Binding SearchText}"
+                                                            Style="{StaticResource ChampsDeRecherche}">
+                                                        <Controls:SearchBarRendererControl.Behaviors>
+                                                            <behaviors:EventToCommandBehavior EventName="TextChanged" 
+                                                     Command="{Binding SearchCommand}"/>
+                                                        </Controls:SearchBarRendererControl.Behaviors>
+                                                    </Controls:SearchBarRendererControl>
+
+                                                </Controls:MaterialFrame>
+
+                                            </StackLayout>
+
+                                            <StackLayout 
+                                               Orientation="Vertical"
+                                               Padding="3,5,3,2"
+                                               VerticalOptions="FillAndExpand"
+                                               HorizontalOptions="FillAndExpand">
+
+                                                <RefreshView x:DataType="local:BanqueVrpViewModelDetail" 
+                                                           Command="{Binding LoadItemsCommand}" 
+                                                           IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                                                    <CollectionView x:Name="ListeVRP"
+                                                            ItemsSource="{Binding EtsBancaireList}"
+                                                            Style="{StaticResource CollectionviewListeStyle}"
+                                                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                                            ItemTemplate="{StaticResource CollectionVRP}">
+
+                                                    <CollectionView.EmptyView>
+
+                                                        <StackLayout Orientation="Vertical"
+                                                                    Padding="15,0,15,0"
+                                                                    BackgroundColor="{StaticResource Primary}"
+                                                                    HorizontalOptions="FillAndExpand"
+                                                                    VerticalOptions="FillAndExpand"
+                                                                    Spacing="0">
+
+                                                            <StackLayout Orientation="Vertical"
+                                                                    HorizontalOptions="CenterAndExpand"
+                                                                    VerticalOptions="CenterAndExpand"
+                                                                    Spacing="10">
+
+                                                                <Image Source="{pathimage:ImageResource VRPApplicationCERG.Images.Financeamico.png}"
+                                                                       HeightRequest="200"
+                                                                       WidthRequest="200"
+                                                                       HorizontalOptions="CenterAndExpand"
+                                                                       Aspect="AspectFit"/>
+
+                                                                <Label Text="Cette Liste est vide."
+                                                                       Style="{StaticResource TitreCrouselApplication}"
+                                                                       HorizontalOptions="FillAndExpand"
+                                                                       HorizontalTextAlignment="Center" />
+
+                                                                <Label Text="Aucun élément n'a été trouvé dans cette liste. Il sagit peut etre d'une erreur réseaux. Vérifiez l'état de votre connexion internet."
+                                                                       HorizontalOptions="CenterAndExpand"
+                                                                       Style="{StaticResource DescriptionlabelsansboldCarousel}"/>
+
+
+                                                            </StackLayout>
+
+                                                        </StackLayout>
+
+                                                    </CollectionView.EmptyView>
+
+                                                </CollectionView>
+                                                </RefreshView>
+
+                                            </StackLayout>
+
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </Grid>
+                                        <!--fin de ligne-->
+                                    </Controls:XFTabPage.Content>
+                                </Controls:XFTabPage>
+                            </Controls:XFTabControl.XFTabPages>
+                        </Controls:XFTabControl>
+
+                </StackLayout>
+                <!--</Grid>-->
+            <!--2. fin de ligne -->
+        </StackLayout>
+    </Grid>
+    <!--2. fin de ligne -->
+</ContentPage>
